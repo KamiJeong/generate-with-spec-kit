@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "extensions": {
+    "docguard": {
+      "version": "0.9.9",
+      "source": "local",
+      "manifest_hash": "sha256:fc17a9e01896a6e497e4bc29435064b604f064a9a1ba8873cef4b9cd8e2efc65",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "claude": [
+          "speckit.docguard.guard",
+          "docguard.guard",
+          "speckit.docguard.fix",
+          "docguard.fix",
+          "speckit.docguard.review",
+          "docguard.review",
+          "speckit.docguard.score",
+          "docguard.score",
+          "speckit.docguard.diagnose",
+          "speckit.docguard.generate"
+        ],
+        "codex": [
+          "speckit.docguard.guard",
+          "docguard.guard",
+          "speckit.docguard.fix",
+          "docguard.fix",
+          "speckit.docguard.review",
+          "docguard.review",
+          "speckit.docguard.score",
+          "docguard.score",
+          "speckit.docguard.diagnose",
+          "speckit.docguard.generate"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-03-27T01:48:20.429341+00:00"
+    },
+    "verify": {
+      "version": "1.0.0",
+      "source": "local",
+      "manifest_hash": "sha256:4baa329349fffb5598a7bd41f958cf193aac77dd624c1c64799de052995ca29a",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "claude": [
+          "speckit.verify.run",
+          "speckit.verify"
+        ],
+        "codex": [
+          "speckit.verify.run",
+          "speckit.verify"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-03-27T01:48:36.286904+00:00"
+    },
+    "sync": {
+      "version": "0.1.0",
+      "source": "local",
+      "manifest_hash": "sha256:e5f4b9456751e1251693feae987401b3583d67770a43d370741c35182a46d06f",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "claude": [
+          "speckit.sync.analyze",
+          "speckit.drift",
+          "speckit.sync.propose",
+          "speckit.sync.apply",
+          "speckit.sync.conflicts",
+          "speckit.sync.backfill"
+        ],
+        "codex": [
+          "speckit.sync.analyze",
+          "speckit.drift",
+          "speckit.sync.propose",
+          "speckit.sync.apply",
+          "speckit.sync.conflicts",
+          "speckit.sync.backfill"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-03-27T01:48:41.257462+00:00"
+    },
+    "retrospective": {
+      "version": "1.0.0",
+      "source": "local",
+      "manifest_hash": "sha256:43dbaba249c6e7322de1130446632197bbcb21c3c9f08fbe16654e86f6d5d922",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "claude": [
+          "speckit.retrospective.analyze"
+        ],
+        "codex": [
+          "speckit.retrospective.analyze"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-03-27T01:48:46.262504+00:00"
+    }
+  }
+}
