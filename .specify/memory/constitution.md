@@ -28,7 +28,7 @@ Deferred TODOs:
   - None. All fields resolved.
 -->
 
-# Product Market Constitution
+# Generate with Spec Kit Constitution
 
 ## 핵심 원칙 (Core Principles)
 
