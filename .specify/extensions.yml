@@ -1,0 +1,43 @@
+schema_version: "1.0"
+
+hooks:
+  before_plan:
+    - extension: docguard
+      command: speckit.docguard.review
+      description: "Review documentation consistency before planning."
+      enabled: true
+      optional: false
+
+  before_tasks:
+    - extension: docguard
+      command: speckit.docguard.review
+      description: "Review documentation consistency before task generation."
+      enabled: true
+      optional: false
+
+  after_tasks:
+    - extension: docguard
+      command: speckit.docguard.score
+      description: "Check CDD maturity after task generation."
+      enabled: true
+      optional: false
+
+  after_implement:
+    - extension: verify
+      command: speckit.verify.run
+      description: "Validate implementation against the specification."
+      enabled: true
+      optional: false
+
+    - extension: sync
+      command: speckit.sync.analyze
+      description: "Analyze drift between implementation and specification."
+      enabled: true
+      optional: false
+
+    - extension: retrospective
+      command: speckit.retrospective.analyze
+      description: "Generate a post-implementation retrospective."
+      enabled: true
+      optional: true
+      prompt: "Run retrospective analysis now?"
