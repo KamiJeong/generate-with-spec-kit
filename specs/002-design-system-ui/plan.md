@@ -16,7 +16,7 @@ shadcn/ui 최신 버전 기반으로 53개 이상의 UI 컴포넌트를 `@myorg/
 ## 기술 컨텍스트 (Technical Context)
 
 **언어/버전**: TypeScript 5.x
-**주요 의존성**: shadcn/ui (latest), Tailwind CSS v4+, Radix UI, tsup v8+, Storybook v10.3.3, @storybook/test-runner 0.24.3, axe-core, Biome v2.4.9
+**주요 의존성**: shadcn/ui (latest), Tailwind CSS v4+ (`@tailwindcss/vite` Vite 플러그인 필수), Radix UI, tsup v8+, Storybook v10.3.3, @storybook/test-runner 0.24.3, axe-core, Biome v2.4.9
 **스토리지**: 해당 없음 (N/A) — 컴포넌트 라이브러리
 **테스트**: Storybook v10.3.3 내장 테스트 (play functions + `@storybook/test`), `@storybook/test-runner 0.24.3`, axe-core (접근성)
 **린팅/포맷**: Biome v2.4.9 (ESLint 대체 — lint + format 통합)
@@ -111,7 +111,7 @@ packages/
 | 접근성 테스트 | `@storybook/addon-a11y` + axe-core | Storybook 내에서 자동 접근성 검사 통합 |
 | 린팅/포맷 | Biome v2.4.9 (ESLint 대체) | lint + format 단일 도구 통합. `biome check` 명령으로 실행 |
 | 빌드 도구 | tsup (기존 패키지와 동일) | 프로젝트 일관성 유지 |
-| Tailwind 버전 | v4 (CSS-first 설정) | `tailwind.config.ts` 불필요. `@import "tailwindcss"` + `@theme` CSS 블록으로 설정. shadcn/ui 최신과 호환 |
+| Tailwind 버전 | v4 (CSS-first 설정) + `@tailwindcss/vite` | `tailwind.config.ts` 불필요. `@import "tailwindcss"` + `@theme` CSS 블록으로 설정. **Vite 기반 빌드(Storybook 포함)에서 CSS 처리를 위해 `@tailwindcss/vite` 플러그인을 `viteFinal()`에 반드시 등록해야 함.** shadcn/ui 최신과 호환 |
 | 토큰 연결 방식 | CSS custom properties via Tailwind v4 `@theme` 블록 (`--color-primary` 등) | `@myorg/tokens`의 CSS 변수를 Tailwind v4 `@theme` 블록에서 참조 |
 
 ---
@@ -146,17 +146,18 @@ packages/
 ### Phase A: 패키지 셋업
 - `packages/ui` 패키지 초기화
 - `components.json` 설정 (shadcn/ui latest)
-- Storybook v10.3.3 설치 및 설정 (`storybook/react-vite` framework, `biome.json` 설정)
+- Storybook v10.3.3 설치 및 설정 (`storybook/react-vite` framework, `@storybook/addon-a11y`, `biome.json` 설정)
 - `@myorg/tokens` 의존성 연결
 - Tailwind v4 CSS-first 설정 (`@theme` 블록으로 토큰 참조, `tailwind.config.ts` 미사용)
+- **`@tailwindcss/vite` 플러그인을 `.storybook/main.ts`의 `viteFinal()` 및 필요 시 `vite.config.ts`에 등록** — Storybook/Vite 환경에서 Tailwind CSS 처리 필수 조건
 
 ### Phase B: 낮은 복잡도 컴포넌트 (19개)
 Accordion, Alert, Aspect Ratio, Badge, Button, Button Group, Card, Checkbox, Empty, Field, Input, Item, Kbd, Label, Radio Group, Separator, Spinner, Switch, Native Select
 
-### Phase C: 중간 복잡도 컴포넌트 (14개)
+### Phase C: 중간 복잡도 컴포넌트 (18개)
 Alert Dialog, Breadcrumb, Collapsible, Context Menu, Dialog, Drawer, Dropdown Menu, Hover Card, Input Group, Input OTP, Menubar, Navigation Menu, Pagination, Popover, Progress, Sheet, Sonner, Tabs
 
-### Phase D: 높은 복잡도 컴포넌트 (11개)
+### Phase D: 높은 복잡도 컴포넌트 (12개)
 Avatar, Calendar, Carousel, Chart, Combobox, Command, Data Table, Date Picker, Direction, Resizable, Sidebar, Table
 
 ### Phase E: Storybook v10.3.3 테스트 완성

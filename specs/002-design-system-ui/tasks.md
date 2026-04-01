@@ -35,10 +35,10 @@
 
 - [X] T008 공통 유틸리티 `cn()` (tailwind-merge + clsx) 구현 — `packages/ui/src/lib/utils.ts`
 - [X] T009 [P] `class-variance-authority(cva)` 타입 헬퍼 및 공통 variant 타입 정의 — `packages/ui/src/lib/variants.ts`
-- [X] T010 [P] Storybook 10.3.3 설치 및 `.storybook/main.ts` 설정 (`storybook/react-vite` framework, `@storybook/addon-essentials`, `@storybook/addon-a11y`) — `packages/ui/.storybook/main.ts`
+- [X] T010 [P] Storybook 10.3.3 설치 및 `.storybook/main.ts` 설정 (`storybook/react-vite` framework, `@storybook/addon-a11y`), `viteFinal()`에 **`@tailwindcss/vite` 플러그인 등록** (`config.plugins = [...(config.plugins ?? []), tailwindcss()]`) 및 `@` 경로 alias 설정 — `packages/ui/.storybook/main.ts`
 - [X] T011 Storybook 10.3.3 `preview.ts` 설정 (`@myorg/tokens` CSS 변수 import, `index.css` Tailwind v4 import, 다크모드 툴바 토글) — `packages/ui/.storybook/preview.ts`
 - [X] T012 [P] `@storybook/test-runner 0.24.3` 설정 (axe-core 접근성 자동 검사, `preVisit` 훅으로 a11y 강제 실행) — `packages/ui/.storybook/test-runner.ts`
-- [X] T013 [P] Storybook 10.3.3 관련 package.json 스크립트 추가 (`storybook`, `build-storybook`, `test-storybook`), `storybook 10.3.3` + `@storybook/test-runner 0.24.3` devDependencies 추가, ESLint 제거 후 `@biomejs/biome ^2.4.9` 추가, `biome.json` 설정 — `packages/ui/package.json`, `packages/ui/biome.json`
+- [X] T013 [P] Storybook 10.3.3 관련 package.json 스크립트 추가 (`storybook`, `build-storybook`, `test-storybook`), `storybook 10.3.3` + `@storybook/test-runner 0.24.3` + **`@tailwindcss/vite`** devDependencies 추가, ESLint 제거 후 `@biomejs/biome ^2.4.9` 추가, `biome.json` 설정 — `packages/ui/package.json`, `packages/ui/biome.json`
 - [X] T014 [P] `packages/ui/src/index.ts` 빈 진입점 생성 (Phase 3~6에서 점진적으로 export 추가) — `packages/ui/src/index.ts`
 
 **체크포인트**: `pnpm --filter @myorg/ui storybook` 실행 시 빈 Storybook이 정상 실행됨
@@ -121,6 +121,7 @@
 **독립 테스트**: 임의 컴포넌트를 import하여 렌더링 시 수동 theme prop 없이 토큰 정의 색상이 적용됨. `data-theme="dark"` 클래스 토글 시 모든 컴포넌트 색상이 다크 토큰 값으로 전환됨.
 
 - [X] T065 [US2] `packages/ui/src/components/` 전체에서 하드코딩 색상 값(`#`, `rgb(`, `hsl(` 등) 검색 및 토큰 클래스로 교체 — `packages/ui/src/components/*.tsx`
+- [X] T108 [US2] `packages/ui/src/index.css`의 Sidebar CSS 변수(`--sidebar`, `--sidebar-foreground` 등 8개) 처리: `@myorg/tokens/src/css/base.css`에 sidebar 토큰 추가 후 `index.css`에서 참조하도록 교체 (FR-002 준수 — 하드코딩 색상값 제거) — `packages/tokens/src/css/base.css`, `packages/ui/src/index.css`
 - [X] T066 [P] [US2] `packages/ui/.storybook/preview.ts`에 라이트/다크 모드 전환 툴바 추가 (Storybook UI 전용 — 개발 중 다크모드 시각 확인용) — `packages/ui/.storybook/preview.ts`
 - [X] T067 [P] [US2] `packages/ui/src/index.css`의 `@theme` 블록에서 `@myorg/tokens` CSS 변수 매핑 전체 확인 (color, spacing, radius, typography — Tailwind v4 기준, `tailwind.config.ts` 없음) — `packages/ui/src/index.css`
 - [X] T068 [US2] Chart 컴포넌트의 색상을 `@myorg/tokens` chart 토큰 CSS 변수로 교체 — `packages/ui/src/components/chart.tsx`
