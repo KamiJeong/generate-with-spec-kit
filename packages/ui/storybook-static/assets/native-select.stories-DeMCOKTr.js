@@ -1,9 +1,0 @@
-import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{r as d}from"./iframe-DbkQVXnW.js";import{c as p}from"./utils-BQHNewu7.js";import{C as m}from"./chevron-down-DiXGYKpU.js";import"./preload-helper-Dp1pzeXC.js";import"./createLucideIcon-C70vjQTX.js";const a=d.forwardRef(({className:s,children:t,...l},c)=>e.jsxs("div",{className:"relative",children:[e.jsx("select",{ref:c,"data-slot":"native-select",className:p("border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 flex h-9 w-full appearance-none rounded-md border bg-transparent px-3 py-2 pr-9 text-sm shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",s),...l,children:t}),e.jsx(m,{className:"pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-muted-foreground"})]}));a.displayName="NativeSelect";a.__docgenInfo={description:"",methods:[],displayName:"NativeSelect"};const{expect:u,userEvent:v,within:x}=__STORYBOOK_MODULE_TEST__,_={title:"Components/NativeSelect",component:a,tags:["autodocs"],render:()=>e.jsxs(a,{defaultValue:"one","aria-label":"Plan",children:[e.jsx("option",{value:"one",children:"One"}),e.jsx("option",{value:"two",children:"Two"})]})},o={play:async({canvasElement:s})=>{const t=x(s).getByRole("combobox");await v.selectOptions(t,"two"),await u(t).toHaveValue("two")}};var n,r,i;o.parameters={...o.parameters,docs:{...(n=o.parameters)==null?void 0:n.docs,source:{originalSource:`{
-  play: async ({
-    canvasElement
-  }) => {
-    const select = within(canvasElement).getByRole('combobox');
-    await userEvent.selectOptions(select, 'two');
-    await expect(select).toHaveValue('two');
-  }
-}`,...(i=(r=o.parameters)==null?void 0:r.docs)==null?void 0:i.source}}};const E=["Default"];export{o as Default,E as __namedExportsOrder,_ as default};
