@@ -219,6 +219,9 @@ importers:
       axe-playwright:
         specifier: ^2.0.1
         version: 2.2.2(playwright@1.58.2)
+      playwright:
+        specifier: 1.58.2
+        version: 1.58.2
       storybook:
         specifier: 10.3.3
         version: 10.3.3(@testing-library/dom@10.4.0)(prettier@3.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
