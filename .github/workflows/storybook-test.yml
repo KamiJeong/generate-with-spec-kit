@@ -8,7 +8,7 @@ on:
 jobs:
   storybook:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
 
     steps:
       - uses: actions/checkout@v4
@@ -22,6 +22,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browser
+        run: pnpm --filter @myorg/ui exec playwright install --with-deps chromium
 
       - name: Build Storybook
         run: pnpm --filter @myorg/ui build-storybook
