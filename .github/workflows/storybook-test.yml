@@ -24,7 +24,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Install Playwright browser
-        run: pnpm --filter @myorg/ui exec playwright install --with-deps chromium
+        run: packages/ui/node_modules/.bin/playwright install --with-deps chromium
 
       - name: Build Storybook
         run: pnpm --filter @myorg/ui build-storybook
