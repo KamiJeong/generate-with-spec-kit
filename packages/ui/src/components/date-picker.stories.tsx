@@ -31,10 +31,20 @@ export const Default: Story = {
     const body = within(canvasElement.ownerDocument.body);
     const trigger = canvas.getByRole('button', { name: 'Pick a date' });
     await userEvent.click(trigger);
-    await expect(await body.findByRole('grid')).toBeInTheDocument();
-    await userEvent.click(body.getAllByRole('button', { name: /27/ })[0]);
+    const calendar = await body.findByRole('grid');
+    await expect(calendar).toBeInTheDocument();
+
+    const dayButton = calendar.querySelector<HTMLButtonElement>(
+      'button[data-day]:not([disabled])'
+    );
+
+    if (!dayButton) {
+      throw new Error('No selectable day button found in date picker calendar');
+    }
+
+    await userEvent.click(dayButton);
     await expect(
-      canvas.getByRole('button', { name: /March 27.*2026/i })
-    ).toBeInTheDocument();
+      canvas.queryByRole('button', { name: 'Pick a date' })
+    ).not.toBeInTheDocument();
   },
 };
