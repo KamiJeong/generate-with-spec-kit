@@ -1,4 +1,4 @@
-import { grayHsl, primaryHsl } from '../primitives/colors';
+import { chartHsl, grayHsl, primaryHsl } from '../primitives/colors';
 
 const alphaVar = (token: string) => `hsl(var(${token}) / <alpha-value>)`;
 
@@ -21,7 +21,14 @@ export const semantic = {
   destructiveForeground: alphaVar('--destructive-foreground'),
   border: alphaVar('--border'),
   input: alphaVar('--input'),
-  ring: alphaVar('--ring')
+  ring: alphaVar('--ring'),
+  chart1: alphaVar('--chart-1'),
+  chart2: alphaVar('--chart-2'),
+  chart3: alphaVar('--chart-3'),
+  chart4: alphaVar('--chart-4'),
+  chart5: alphaVar('--chart-5'),
+  chartGrid: alphaVar('--chart-grid'),
+  chartSurface: alphaVar('--chart-surface')
 } as const;
 
 export const semanticHsl = {
@@ -43,7 +50,14 @@ export const semanticHsl = {
   destructiveForeground: '0 0% 100%',
   border: grayHsl['200'],
   input: grayHsl['200'],
-  ring: primaryHsl['500']
+  ring: primaryHsl['500'],
+  chart1: chartHsl['1'],
+  chart2: chartHsl['2'],
+  chart3: chartHsl['3'],
+  chart4: chartHsl['4'],
+  chart5: chartHsl['5'],
+  chartGrid: chartHsl.grid,
+  chartSurface: chartHsl.surface
 } as const;
 
 export const radius = '0.5rem';

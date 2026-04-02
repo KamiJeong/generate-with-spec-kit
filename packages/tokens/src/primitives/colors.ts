@@ -53,3 +53,13 @@ export const primaryHsl = {
   '900': '357 74% 18%',
   '950': '357 76% 10%'
 } as const;
+
+export const chartHsl = {
+  '1': primaryHsl['500'],
+  '2': grayHsl['700'],
+  '3': primaryHsl['300'],
+  '4': grayHsl['400'],
+  '5': primaryHsl['700'],
+  grid: grayHsl['300'],
+  surface: '0 0% 100%'
+} as const;

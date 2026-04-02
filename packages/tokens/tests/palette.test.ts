@@ -5,14 +5,49 @@ import { describe, expect, it } from 'vitest';
 
 import { colors, semantic } from '../src/index';
 
+const semanticTokenNames = [
+  'background',
+  'foreground',
+  'card',
+  'cardForeground',
+  'popover',
+  'popoverForeground',
+  'primary',
+  'primaryForeground',
+  'secondary',
+  'secondaryForeground',
+  'muted',
+  'mutedForeground',
+  'accent',
+  'accentForeground',
+  'destructive',
+  'destructiveForeground',
+  'border',
+  'input',
+  'ring',
+  'chart1',
+  'chart2',
+  'chart3',
+  'chart4',
+  'chart5',
+  'chartGrid',
+  'chartSurface'
+] as const satisfies ReadonlyArray<keyof typeof semantic>;
+
 describe('palette completeness', () => {
   it('includes at least seven gray steps and five primary steps', () => {
     expect(Object.keys(colors.gray)).toHaveLength(11);
     expect(Object.keys(colors.primary).length).toBeGreaterThanOrEqual(5);
   });
 
-  it('includes all 19 semantic tokens', () => {
-    expect(Object.keys(semantic)).toHaveLength(19);
+  it('includes the full semantic token set without omissions or extras', () => {
+    expect([...Object.keys(semantic)].sort()).toEqual([...semanticTokenNames].sort());
+  });
+
+  it('maps every semantic token to an alpha-aware CSS variable', () => {
+    for (const name of semanticTokenNames) {
+      expect(semantic[name]).toMatch(/^hsl\(var\(--[a-z0-9-]+\) \/ <alpha-value>\)$/);
+    }
   });
 
   it('documents the palette catalog', () => {

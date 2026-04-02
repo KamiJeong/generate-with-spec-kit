@@ -1,0 +1,39 @@
+name: Storybook Test
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  storybook:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browser
+        run: pnpm --filter @myorg/ui exec playwright install --with-deps chromium
+
+      - name: Build Storybook
+        run: pnpm --filter @myorg/ui build-storybook
+
+      - name: Start static Storybook
+        run: node packages/ui/scripts/serve-static.cjs &
+
+      - name: Wait for Storybook
+        run: npx wait-on http://127.0.0.1:6006
+
+      - name: Run Storybook tests
+        run: packages/ui/node_modules/.bin/test-storybook --url http://127.0.0.1:6006 --config-dir packages/ui/.storybook

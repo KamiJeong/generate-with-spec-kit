@@ -5,6 +5,18 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "storybook": {
+      "cache": false,
+      "persistent": true
+    },
+    "build-storybook": {
+      "dependsOn": ["^build"],
+      "outputs": ["storybook-static/**"]
+    },
+    "test-storybook": {
+      "dependsOn": ["build-storybook"],
+      "outputs": []
+    },
     "test": {
       "dependsOn": ["build"],
       "outputs": ["coverage/**"]

@@ -19,6 +19,7 @@
     },
     "./css": {
       "types": "./src/css/base.css.d.ts",
+      "style": "./src/css/base.css",
       "import": "./src/css/base.css",
       "require": "./src/css/base.css"
     }
