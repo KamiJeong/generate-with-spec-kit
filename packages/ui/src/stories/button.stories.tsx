@@ -37,6 +37,7 @@ export const Default: Story = {
 };
 
 export const Destructive: Story = {
+  render: (args) => <Button {...args} />,
   args: {
     variant: 'destructive',
     children: 'Destructive',
@@ -44,6 +45,7 @@ export const Destructive: Story = {
 };
 
 export const Outline: Story = {
+  render: (args) => <Button {...args} />,
   args: {
     variant: 'outline',
     children: 'Outline',
@@ -51,6 +53,7 @@ export const Outline: Story = {
 };
 
 export const Secondary: Story = {
+  render: (args) => <Button {...args} />,
   args: {
     variant: 'secondary',
     children: 'Secondary',
@@ -58,6 +61,7 @@ export const Secondary: Story = {
 };
 
 export const Ghost: Story = {
+  render: (args) => <Button {...args} />,
   args: {
     variant: 'ghost',
     children: 'Ghost',
@@ -65,6 +69,7 @@ export const Ghost: Story = {
 };
 
 export const Link: Story = {
+  render: (args) => <Button {...args} />,
   args: {
     variant: 'link',
     children: 'Link',

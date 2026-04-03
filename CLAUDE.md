@@ -43,9 +43,9 @@ TypeScript 5.x: Follow standard conventions
 
 ## Recent Changes
 
+- 006-fix-storybook-ux: Fix Biome lint (116 format errors), viewport width, Controls props, and decorator pattern
 - 005-page-template-stories: Adding 4 page template stories (DashboardPage, AuthPage, FormPage, SettingsPage) for AI agent layout pattern reference
 - 004-story-variant-coverage: Added full variant named exports to Button, Badge, Alert, Spinner, Tabs, Switch, Avatar, Sheet stories
-- 003-design-md: Added DESIGN.md + AGENTS.md — design system documentation for Claude Code and Codex AI agents
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->

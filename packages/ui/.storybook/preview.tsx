@@ -19,7 +19,27 @@ const preview: Preview = {
     },
   },
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
+    viewport: {
+      defaultViewport: 'desktop1280',
+      viewports: {
+        desktop1280: {
+          name: 'Desktop (1280px)',
+          styles: { width: '1280px', height: '900px' },
+          type: 'desktop',
+        },
+        tablet768: {
+          name: 'Tablet (768px)',
+          styles: { width: '768px', height: '1024px' },
+          type: 'tablet',
+        },
+        mobile375: {
+          name: 'Mobile (375px)',
+          styles: { width: '375px', height: '812px' },
+          type: 'mobile',
+        },
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -46,7 +66,7 @@ const preview: Preview = {
       document.documentElement.classList.toggle('dark', theme === 'dark');
       document.documentElement.setAttribute('data-theme', theme);
 
-      return Story();
+      return <Story />;
     },
   ],
 };
