@@ -7,6 +7,7 @@ Auto-generated from all feature plans. Last updated: 2026-04-03
 - TypeScript 5.x + Tailwind CSS v3+, shadcn/ui (latest), framer-motion v11+, tsup v8+ (001-design-token-system)
 - TypeScript 5.x + Tailwind CSS v4, Storybook 10.3.3, Biome v2.4.9, shadcn/ui, Radix UI, tsup v8 (002-design-system-ui)
 - Markdown documentation artifact — DESIGN.md + AGENTS.md for AI agent design system guidance (003-design-md)
+- Storybook full variant coverage — named story exports per variant/size for AI agent discoverability (004-story-variant-coverage)
 
 ## Project Structure
 
@@ -42,9 +43,9 @@ TypeScript 5.x: Follow standard conventions
 
 ## Recent Changes
 
+- 004-story-variant-coverage: Added full variant named exports to Button, Badge, Alert, Spinner, Tabs, Switch, Avatar, Sheet stories
 - 003-design-md: Added DESIGN.md + AGENTS.md — design system documentation for Claude Code and Codex AI agents
 - 001-design-token-system: Added TypeScript 5.x + Tailwind CSS v3+, shadcn/ui (latest), framer-motion v11+, tsup v8+
-- 002-design-system-ui: Added `@myorg/ui` package scaffold, Storybook configuration, and initial component/stories baseline
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->

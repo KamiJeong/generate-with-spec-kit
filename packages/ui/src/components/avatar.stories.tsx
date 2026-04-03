@@ -52,3 +52,46 @@ export const Default: Story = {
     await expect(canvas.getByText('JD')).toBeInTheDocument();
   },
 };
+
+export const Small: Story = {
+  args: {
+    size: 'sm',
+    children: <AvatarFallback>SM</AvatarFallback>,
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: 'lg',
+    children: <AvatarFallback>LG</AvatarFallback>,
+  },
+};
+
+export const WithBadge: Story = {
+  render: () => (
+    <Avatar>
+      <AvatarImage src="https://i.pravatar.cc/80?img=12" alt="Alex" />
+      <AvatarFallback>AX</AvatarFallback>
+      <AvatarBadge>
+        <CheckIcon />
+      </AvatarBadge>
+    </Avatar>
+  ),
+};
+
+export const Group: Story = {
+  render: () => (
+    <AvatarGroup>
+      <Avatar size="sm">
+        <AvatarFallback>AL</AvatarFallback>
+      </Avatar>
+      <Avatar size="sm">
+        <AvatarFallback>BO</AvatarFallback>
+      </Avatar>
+      <Avatar size="sm">
+        <AvatarFallback>CY</AvatarFallback>
+      </Avatar>
+      <AvatarGroupCount>+2</AvatarGroupCount>
+    </AvatarGroup>
+  ),
+};

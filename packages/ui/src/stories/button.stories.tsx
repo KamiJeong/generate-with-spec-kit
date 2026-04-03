@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { Plus } from 'lucide-react';
 import { expect, userEvent, within } from 'storybook/test';
 import { Button } from '../components/button';
 
@@ -33,4 +34,82 @@ export const Default: Story = {
     await expect(button).toBeInTheDocument();
     await expect(disabledButton).toBeDisabled();
   },
+};
+
+export const Destructive: Story = {
+  args: {
+    variant: 'destructive',
+    children: 'Destructive',
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    variant: 'outline',
+    children: 'Outline',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    variant: 'secondary',
+    children: 'Secondary',
+  },
+};
+
+export const Ghost: Story = {
+  args: {
+    variant: 'ghost',
+    children: 'Ghost',
+  },
+};
+
+export const Link: Story = {
+  args: {
+    variant: 'link',
+    children: 'Link',
+  },
+};
+
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-2">
+      <Button size="xs">XS</Button>
+      <Button size="sm">SM</Button>
+      <Button size="default">Default</Button>
+      <Button size="lg">LG</Button>
+    </div>
+  ),
+};
+
+export const IconSizes: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-2">
+      <Button size="icon" aria-label="Icon default">
+        <Plus />
+      </Button>
+      <Button size="icon-xs" aria-label="Icon extra small">
+        <Plus />
+      </Button>
+      <Button size="icon-sm" aria-label="Icon small">
+        <Plus />
+      </Button>
+      <Button size="icon-lg" aria-label="Icon large">
+        <Plus />
+      </Button>
+    </div>
+  ),
+};
+
+export const Variants: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      <Button variant="default">Default</Button>
+      <Button variant="destructive">Destructive</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  ),
 };

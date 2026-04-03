@@ -17,3 +17,15 @@ export const Default: Story = {
     await expect(canvas.getByLabelText('Loading')).toBeInTheDocument();
   },
 };
+
+export const Small: Story = {
+  args: {
+    size: 'sm',
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: 'lg',
+  },
+};

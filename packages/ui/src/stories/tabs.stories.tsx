@@ -27,3 +27,29 @@ export const Default: Story = {
     await expect(canvas.getByText('Password content')).toBeInTheDocument();
   },
 };
+
+export const Line: Story = {
+  render: () => (
+    <Tabs defaultValue="account" className="w-80">
+      <TabsList variant="line">
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">Account content</TabsContent>
+      <TabsContent value="password">Password content</TabsContent>
+    </Tabs>
+  ),
+};
+
+export const Vertical: Story = {
+  render: () => (
+    <Tabs defaultValue="account" orientation="vertical" className="w-[32rem]">
+      <TabsList>
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">Account content</TabsContent>
+      <TabsContent value="password">Password content</TabsContent>
+    </Tabs>
+  ),
+};
