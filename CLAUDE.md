@@ -1,11 +1,12 @@
-# generate-with-spec-kit Development Guidelines
+﻿# generate-with-spec-kit Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-03-27
+Auto-generated from all feature plans. Last updated: 2026-04-03
 
 ## Active Technologies
 
 - TypeScript 5.x + Tailwind CSS v3+, shadcn/ui (latest), framer-motion v11+, tsup v8+ (001-design-token-system)
 - TypeScript 5.x + Tailwind CSS v4, Storybook 10.3.3, Biome v2.4.9, shadcn/ui, Radix UI, tsup v8 (002-design-system-ui)
+- Markdown documentation artifact — DESIGN.md + AGENTS.md for AI agent design system guidance (003-design-md)
 
 ## Project Structure
 
@@ -19,6 +20,12 @@ packages/
     .storybook/
     storybook-static/
 ```
+
+## Design System
+
+- Canonical guide: `/DESIGN.md`
+- For any UI task, read `/DESIGN.md` first before proposing or editing components.
+- Use semantic tokens and existing `@myorg/ui` component variants from that file.
 
 ## Commands
 
@@ -35,6 +42,7 @@ TypeScript 5.x: Follow standard conventions
 
 ## Recent Changes
 
+- 003-design-md: Added DESIGN.md + AGENTS.md — design system documentation for Claude Code and Codex AI agents
 - 001-design-token-system: Added TypeScript 5.x + Tailwind CSS v3+, shadcn/ui (latest), framer-motion v11+, tsup v8+
 - 002-design-system-ui: Added `@myorg/ui` package scaffold, Storybook configuration, and initial component/stories baseline
 
