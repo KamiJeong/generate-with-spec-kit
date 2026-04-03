@@ -43,9 +43,9 @@ TypeScript 5.x: Follow standard conventions
 
 ## Recent Changes
 
+- 005-page-template-stories: Adding 4 page template stories (DashboardPage, AuthPage, FormPage, SettingsPage) for AI agent layout pattern reference
 - 004-story-variant-coverage: Added full variant named exports to Button, Badge, Alert, Spinner, Tabs, Switch, Avatar, Sheet stories
 - 003-design-md: Added DESIGN.md + AGENTS.md — design system documentation for Claude Code and Codex AI agents
-- 001-design-token-system: Added TypeScript 5.x + Tailwind CSS v3+, shadcn/ui (latest), framer-motion v11+, tsup v8+
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->
