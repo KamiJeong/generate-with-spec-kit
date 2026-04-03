@@ -35,3 +35,12 @@ export const Default: Story = {
     await expect(switchElement).toHaveAttribute('data-state', 'checked');
   },
 };
+
+export const Small: Story = {
+  render: () => (
+    <div className="flex items-center gap-2">
+      <Switch id="small" size="sm" aria-label="Small switch" />
+      <Label htmlFor="small">Small</Label>
+    </div>
+  ),
+};

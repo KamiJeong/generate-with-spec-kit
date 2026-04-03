@@ -31,3 +31,12 @@ export const Default: Story = {
     await expect(canvas.getByText('Heads up')).toBeInTheDocument();
   },
 };
+
+export const Destructive: Story = {
+  render: () => (
+    <Alert variant="destructive" className="w-96">
+      <AlertTitle>Error</AlertTitle>
+      <AlertDescription>Something went wrong.</AlertDescription>
+    </Alert>
+  ),
+};
