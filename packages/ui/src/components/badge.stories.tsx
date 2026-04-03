@@ -37,6 +37,7 @@ export const Default: Story = {
 };
 
 export const Secondary: Story = {
+  render: (args) => <Badge {...args} />,
   args: {
     variant: 'secondary',
     children: 'Secondary',
@@ -44,6 +45,7 @@ export const Secondary: Story = {
 };
 
 export const Destructive: Story = {
+  render: (args) => <Badge {...args} />,
   args: {
     variant: 'destructive',
     children: 'Destructive',
@@ -51,6 +53,7 @@ export const Destructive: Story = {
 };
 
 export const Outline: Story = {
+  render: (args) => <Badge {...args} />,
   args: {
     variant: 'outline',
     children: 'Outline',
@@ -58,13 +61,16 @@ export const Outline: Story = {
 };
 
 export const Ghost: Story = {
+  render: (args) => <Badge {...args} />,
   args: {
     variant: 'ghost',
-    children: 'Ghost',
+    children: 'Helodd',
+    asChild: false,
   },
 };
 
 export const Link: Story = {
+  render: (args) => <Badge {...args} />,
   args: {
     variant: 'link',
     children: 'Link',
