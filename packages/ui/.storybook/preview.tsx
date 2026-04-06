@@ -41,9 +41,15 @@ const preview: Preview = {
       },
     },
     controls: {
+      expanded: true,
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
+      },
+    },
+    docs: {
+      source: {
+        type: 'dynamic',
       },
     },
     a11y: {

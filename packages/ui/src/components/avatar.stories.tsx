@@ -11,15 +11,41 @@ import {
   AvatarImage,
 } from './avatar';
 
+function createAvatarDataUrl(
+  initials: string,
+  background: string,
+  foreground: string
+) {
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-label="${initials}">
+      <rect width="80" height="80" rx="40" fill="${background}" />
+      <text x="40" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="${foreground}">
+        ${initials}
+      </text>
+    </svg>
+  `;
+
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
+const taylorAvatar = createAvatarDataUrl('TA', '#f4f4f5', '#18181b');
+const alexAvatar = createAvatarDataUrl('AX', '#e4e4e7', '#18181b');
+
 const meta = {
   title: 'Components/Avatar',
   component: Avatar,
   tags: ['autodocs'],
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['default', 'sm', 'lg'],
+    },
+  },
   render: () => (
     <div className="grid gap-6">
       <div className="flex items-center gap-4">
         <Avatar>
-          <AvatarImage src="https://i.pravatar.cc/80?img=8" alt="Taylor" />
+          <AvatarImage src={taylorAvatar} alt="Taylor" />
           <AvatarFallback>TA</AvatarFallback>
           <AvatarBadge>
             <CheckIcon />
@@ -72,7 +98,7 @@ export const Large: Story = {
 export const WithBadge: Story = {
   render: () => (
     <Avatar>
-      <AvatarImage src="https://i.pravatar.cc/80?img=12" alt="Alex" />
+      <AvatarImage src={alexAvatar} alt="Alex" />
       <AvatarFallback>AX</AvatarFallback>
       <AvatarBadge>
         <CheckIcon />

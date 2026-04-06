@@ -6,6 +6,12 @@ const meta = {
   title: 'Components/Spinner',
   component: Spinner,
   tags: ['autodocs'],
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['sm', 'default', 'lg'],
+    },
+  },
 } satisfies Meta<typeof Spinner>;
 
 export default meta;

@@ -8,6 +8,7 @@ const meta = {
   component: Progress,
   tags: ['autodocs'],
   args: {
+    'aria-label': 'File upload progress',
     value: 50,
   },
 } satisfies Meta<typeof Progress>;

@@ -6,6 +6,12 @@ const meta = {
   title: 'Components/Tabs',
   component: Tabs,
   tags: ['autodocs'],
+  argTypes: {
+    orientation: {
+      control: 'select',
+      options: ['horizontal', 'vertical'],
+    },
+  },
   render: () => (
     <Tabs defaultValue="account" className="w-80">
       <TabsList>

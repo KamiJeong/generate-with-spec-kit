@@ -8,6 +8,15 @@ const meta = {
   title: 'Components/Switch',
   component: Switch,
   tags: ['autodocs'],
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['default', 'sm'],
+    },
+    disabled: {
+      control: 'boolean',
+    },
+  },
   render: () => (
     <div className="grid gap-4">
       <div className="flex items-center gap-2">
@@ -37,9 +46,13 @@ export const Default: Story = {
 };
 
 export const Small: Story = {
-  render: () => (
+  args: {
+    disabled: false,
+    size: 'sm',
+  },
+  render: (args) => (
     <div className="flex items-center gap-2">
-      <Switch id="small" size="sm" aria-label="Small switch" />
+      <Switch id="small" aria-label="Small switch" {...args} />
       <Label htmlFor="small">Small</Label>
     </div>
   ),

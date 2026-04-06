@@ -12,8 +12,11 @@ const meta = {
   tags: ['autodocs'],
   render: () => (
     <ThemeProvider attribute="class" defaultTheme="light">
-      <Toaster richColors />
-      <Button onClick={() => toast.success('Settings saved')}>
+      <Toaster />
+      <Button
+        variant="secondary"
+        onClick={() => toast.success('Settings saved')}
+      >
         Show toast
       </Button>
     </ThemeProvider>
