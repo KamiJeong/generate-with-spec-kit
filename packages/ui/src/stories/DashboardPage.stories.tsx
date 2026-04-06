@@ -30,7 +30,7 @@ const columns: ColumnDef<(typeof users)[number]>[] = [
 ];
 
 const meta = {
-  title: 'Pages/DashboardPage',
+  title: 'Page/Dashboard',
   parameters: {
     layout: 'fullscreen',
   },

@@ -13,7 +13,7 @@ import { Field } from '../components/field';
 import { Input } from '../components/input';
 
 const meta = {
-  title: 'Pages/AuthPage',
+  title: 'Page/Auth',
   parameters: {
     layout: 'fullscreen',
   },

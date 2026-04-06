@@ -13,9 +13,9 @@ import { Input } from '../components/input';
 import { Textarea } from '../components/textarea';
 
 const meta = {
-  title: 'Pages/FormPage',
+  title: 'Page/Form',
   parameters: {
-    layout: 'padded',
+    layout: 'fullscreen',
   },
   render: () => (
     <div className="mx-auto max-w-2xl p-8">

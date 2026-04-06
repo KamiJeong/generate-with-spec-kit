@@ -37,3 +37,13 @@ export const Large: Story = {
     size: 'lg',
   },
 };
+
+export const AllSizes: Story = {
+  render: () => (
+    <div className="flex items-end gap-4">
+      <Spinner size="sm" />
+      <Spinner />
+      <Spinner size="lg" />
+    </div>
+  ),
+};

@@ -57,3 +57,22 @@ export const Small: Story = {
     </div>
   ),
 };
+
+export const AllSizesAndStates: Story = {
+  render: () => (
+    <div className="grid gap-3">
+      <div className="flex items-center gap-2">
+        <Switch aria-label="Default on" defaultChecked />
+        <Label>Default (on)</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <Switch size="sm" aria-label="Small on" defaultChecked />
+        <Label>Small (on)</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <Switch disabled aria-label="Disabled" />
+        <Label>Disabled</Label>
+      </div>
+    </div>
+  ),
+};
