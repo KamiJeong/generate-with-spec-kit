@@ -23,10 +23,37 @@ const config: StorybookConfig = {
     config.plugins = [...(config.plugins ?? []), tailwindcss()];
 
     config.resolve ??= {};
-    config.resolve.alias = {
-      ...(config.resolve.alias ?? {}),
-      '@': path.resolve(dirname, '../src'),
-    };
+    const existingAlias = Array.isArray(config.resolve.alias)
+      ? config.resolve.alias
+      : Object.entries(config.resolve.alias ?? {}).map(
+          ([find, replacement]) => ({
+            find,
+            replacement,
+          })
+        );
+
+    config.resolve.alias = [
+      ...existingAlias,
+      {
+        find: /^@myorg\/tokens$/,
+        replacement: path.resolve(dirname, '../../tokens/src/index.ts'),
+      },
+      {
+        find: /^@myorg\/tokens\/css$/,
+        replacement: path.resolve(dirname, '../../tokens/src/css/base.css'),
+      },
+      {
+        find: /^@myorg\/tokens\/tailwind$/,
+        replacement: path.resolve(
+          dirname,
+          '../../tokens/src/tailwind/preset.ts'
+        ),
+      },
+      {
+        find: '@',
+        replacement: path.resolve(dirname, '../src'),
+      },
+    ];
 
     return config;
   },
