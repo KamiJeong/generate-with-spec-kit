@@ -7,6 +7,8 @@ Auto-generated from all feature plans. Last updated: 2026-04-06
 - N/A (시각적 스냅샷은 로컬 파일시스템 + git) (007-storybook-setup)
 - TypeScript 5.x + `pretendard` (npm), `@fontsource/noto-sans-kr` (npm), Vitest 2.x (테스트), Biome v2.4.9 (lint/format), tsup v8 (빌드) (008-design-token-improve)
 - N/A (정적 토큰 파일) (008-design-token-improve)
+- TypeScript 5.x + Storybook 10.3.3 (`@storybook/react-vite`), React 18+, `@myorg/tokens`, `@myorg/ui`, Biome v2.4.9, `@storybook/experimental-addon-test`, Vitest 2.x (009-storybook-token-stories)
+- N/A (정적 스토리 파일) (009-storybook-token-stories)
 
 - TypeScript 5.x + Tailwind CSS v3+, shadcn/ui (latest), framer-motion v11+, tsup v8+ (001-design-token-system)
 - TypeScript 5.x + Tailwind CSS v4, Storybook 10.3.3, Biome v2.4.9, shadcn/ui, Radix UI, tsup v8 (002-design-system-ui)
@@ -46,10 +48,10 @@ pnpm --filter @myorg/ui build-storybook
 TypeScript 5.x: Follow standard conventions
 
 ## Recent Changes
+- 009-storybook-token-stories: Added TypeScript 5.x + Storybook 10.3.3 (`@storybook/react-vite`), React 18+, `@myorg/tokens`, `@myorg/ui`, Biome v2.4.9, `@storybook/experimental-addon-test`, Vitest 2.x
 - 008-design-token-improve: Added TypeScript 5.x + `pretendard` (npm), `@fontsource/noto-sans-kr` (npm), Vitest 2.x (테스트), Biome v2.4.9 (lint/format), tsup v8 (빌드)
 - 007-storybook-setup: Added TypeScript 5.x + Storybook 10.3.3, `@storybook/react-vite`, Biome v2.4.9, Vitest 2.x (신규), `@storybook/experimental-addon-test` (신규)
 
-- 006-fix-storybook-ux: Fix Biome lint (116 format errors), viewport width, Controls props, and decorator pattern
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->

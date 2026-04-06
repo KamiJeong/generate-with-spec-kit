@@ -15,9 +15,9 @@ import { Switch } from '../components/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/tabs';
 
 const meta = {
-  title: 'Pages/SettingsPage',
+  title: 'Page/Settings',
   parameters: {
-    layout: 'padded',
+    layout: 'fullscreen',
   },
   render: () => (
     <div className="mx-auto max-w-3xl p-8">

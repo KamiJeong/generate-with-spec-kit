@@ -123,3 +123,19 @@ export const Group: Story = {
     </AvatarGroup>
   ),
 };
+
+export const AllSizes: Story = {
+  render: () => (
+    <div className="flex items-end gap-4">
+      <Avatar size="sm">
+        <AvatarFallback>SM</AvatarFallback>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>MD</AvatarFallback>
+      </Avatar>
+      <Avatar size="lg">
+        <AvatarFallback>LG</AvatarFallback>
+      </Avatar>
+    </div>
+  ),
+};

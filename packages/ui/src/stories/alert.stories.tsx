@@ -49,3 +49,18 @@ export const Destructive: Story = {
     variant: 'destructive',
   },
 };
+
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex w-96 flex-col gap-4">
+      <Alert>
+        <AlertTitle>Default</AlertTitle>
+        <AlertDescription>Default alert.</AlertDescription>
+      </Alert>
+      <Alert variant="destructive">
+        <AlertTitle>Destructive</AlertTitle>
+        <AlertDescription>Destructive alert.</AlertDescription>
+      </Alert>
+    </div>
+  ),
+};

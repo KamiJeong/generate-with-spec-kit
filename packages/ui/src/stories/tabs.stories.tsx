@@ -59,3 +59,26 @@ export const Vertical: Story = {
     </Tabs>
   ),
 };
+
+export const AllOrientations: Story = {
+  render: () => (
+    <div className="grid gap-6 lg:grid-cols-2">
+      <Tabs defaultValue="account" className="w-80">
+        <TabsList>
+          <TabsTrigger value="account">Account</TabsTrigger>
+          <TabsTrigger value="password">Password</TabsTrigger>
+        </TabsList>
+        <TabsContent value="account">Horizontal account content</TabsContent>
+        <TabsContent value="password">Horizontal password content</TabsContent>
+      </Tabs>
+      <Tabs defaultValue="account" orientation="vertical" className="w-[32rem]">
+        <TabsList>
+          <TabsTrigger value="account">Account</TabsTrigger>
+          <TabsTrigger value="password">Password</TabsTrigger>
+        </TabsList>
+        <TabsContent value="account">Vertical account content</TabsContent>
+        <TabsContent value="password">Vertical password content</TabsContent>
+      </Tabs>
+    </div>
+  ),
+};
