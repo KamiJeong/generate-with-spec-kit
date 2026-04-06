@@ -7,6 +7,35 @@ const meta = {
   title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: [
+        'default',
+        'destructive',
+        'outline',
+        'secondary',
+        'ghost',
+        'link',
+      ],
+    },
+    size: {
+      control: 'select',
+      options: [
+        'xs',
+        'sm',
+        'default',
+        'lg',
+        'icon',
+        'icon-xs',
+        'icon-sm',
+        'icon-lg',
+      ],
+    },
+    disabled: {
+      control: 'boolean',
+    },
+  },
   parameters: {
     docs: {
       description: {

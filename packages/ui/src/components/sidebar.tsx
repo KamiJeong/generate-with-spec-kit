@@ -164,8 +164,9 @@ function Sidebar({
 
   if (collapsible === 'none') {
     return (
-      <div
+      <aside
         data-slot="sidebar"
+        aria-label="Sidebar"
         className={cn(
           'flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground',
           className
@@ -173,7 +174,7 @@ function Sidebar({
         {...props}
       >
         {children}
-      </div>
+      </aside>
     );
   }
 
@@ -238,13 +239,14 @@ function Sidebar({
         )}
         {...props}
       >
-        <div
+        <aside
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
+          aria-label="Sidebar"
           className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm"
         >
           {children}
-        </div>
+        </aside>
       </div>
     </div>
   );
@@ -402,7 +404,7 @@ function SidebarGroupLabel({
       data-slot="sidebar-group-label"
       data-sidebar="group-label"
       className={cn(
-        'flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 ring-sidebar-ring outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',
+        'flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground ring-sidebar-ring outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',
         'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0',
         className
       )}

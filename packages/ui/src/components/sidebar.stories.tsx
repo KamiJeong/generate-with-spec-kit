@@ -119,7 +119,7 @@ export const SidebarNavigationComposition: Story = {
         </SidebarContent>
       </Sidebar>
       <SidebarInset className="min-h-[320px] p-6">
-        <h2 className="text-lg font-semibold">Workspace</h2>
+        <h1 className="text-lg font-semibold">Workspace</h1>
       </SidebarInset>
     </SidebarProvider>
   ),

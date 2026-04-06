@@ -15,25 +15,28 @@ const meta = {
   component: NavigationMenu,
   tags: ['autodocs'],
   render: () => (
-    <NavigationMenu viewport={false}>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Products</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid gap-2 p-2 md:w-[320px]">
-              <li>
-                <NavigationMenuLink href="#">
-                  <span className="font-medium">UI Kit</span>
-                  <span className="text-muted-foreground">
-                    Reusable interface primitives
-                  </span>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+    <main aria-label="Navigation menu example" className="p-2">
+      <h1 className="sr-only">Navigation Menu Example</h1>
+      <NavigationMenu viewport={false}>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid gap-2 p-2 md:w-[320px]">
+                <li>
+                  <NavigationMenuLink href="#">
+                    <span className="font-medium">UI Kit</span>
+                    <span className="text-muted-foreground">
+                      Reusable interface primitives
+                    </span>
+                  </NavigationMenuLink>
+                </li>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </main>
   ),
 } satisfies Meta<typeof NavigationMenu>;
 
