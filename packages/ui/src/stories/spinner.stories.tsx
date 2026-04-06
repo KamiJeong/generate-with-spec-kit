@@ -19,12 +19,14 @@ export const Default: Story = {
 };
 
 export const Small: Story = {
+  render: (args) => <Spinner {...args} />,
   args: {
     size: 'sm',
   },
 };
 
 export const Large: Story = {
+  render: (args) => <Spinner {...args} />,
   args: {
     size: 'lg',
   },

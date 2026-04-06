@@ -54,6 +54,7 @@ export const Default: Story = {
 };
 
 export const Small: Story = {
+  render: (args) => <Avatar {...args} />,
   args: {
     size: 'sm',
     children: <AvatarFallback>SM</AvatarFallback>,
@@ -61,6 +62,7 @@ export const Small: Story = {
 };
 
 export const Large: Story = {
+  render: (args) => <Avatar {...args} />,
   args: {
     size: 'lg',
     children: <AvatarFallback>LG</AvatarFallback>,
