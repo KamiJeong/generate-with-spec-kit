@@ -1,0 +1,30 @@
+import { brandHsl, destructiveHsl, grayHsl } from '../primitives/colors';
+
+export const semanticHslDark = {
+  background: grayHsl['950'],
+  foreground: grayHsl['50'],
+  card: grayHsl['900'],
+  cardForeground: grayHsl['50'],
+  popover: grayHsl['900'],
+  popoverForeground: grayHsl['50'],
+  primary: brandHsl['400'],
+  primaryForeground: grayHsl['950'],
+  secondary: grayHsl['800'],
+  secondaryForeground: grayHsl['100'],
+  muted: grayHsl['800'],
+  mutedForeground: grayHsl['400'],
+  accent: grayHsl['700'],
+  accentForeground: grayHsl['100'],
+  destructive: destructiveHsl['400'],
+  destructiveForeground: grayHsl['950'],
+  border: grayHsl['700'],
+  input: grayHsl['700'],
+  ring: brandHsl['400'],
+  chart1: brandHsl['400'],
+  chart2: grayHsl['300'],
+  chart3: brandHsl['300'],
+  chart4: grayHsl['500'],
+  chart5: destructiveHsl['400'],
+  chartGrid: grayHsl['700'],
+  chartSurface: grayHsl['900']
+} as const;

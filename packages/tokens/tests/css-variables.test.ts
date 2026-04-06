@@ -27,6 +27,8 @@ const variableNames = [
   '--ring'
 ];
 
+const fontVariableNames = ['--font-sans', '--font-heading', '--font-mono'];
+
 describe('css variables', () => {
   it('defines all 19 shadcn variables', () => {
     for (const name of variableNames) {
@@ -47,5 +49,18 @@ describe('css variables', () => {
 
       expect(match?.[1]?.trim()).toMatch(/^\d+\s+\d+%\s+\d+%$/);
     }
+  });
+
+  it('defines the font family variables', () => {
+    for (const name of fontVariableNames) {
+      expect(css).toContain(name);
+    }
+  });
+
+  it('defines full dark-mode semantic overrides', () => {
+    expect(css).toContain('.dark,');
+    expect(css).toContain("[data-theme='dark']");
+    expect(css).toContain('--background: 240 6% 4%');
+    expect(css).toContain('--destructive: 22 95% 62%');
   });
 });

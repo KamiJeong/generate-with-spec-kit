@@ -1,3 +1,9 @@
+@import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
+@import '@fontsource/noto-sans-kr/400.css';
+@import '@fontsource/noto-sans-kr/500.css';
+@import '@fontsource/noto-sans-kr/600.css';
+@import '@fontsource/noto-sans-kr/700.css';
+
 @layer base {
   :root {
     --radius: 0.5rem;
@@ -15,18 +21,25 @@
     --muted-foreground: 240 4% 46%;
     --accent: 240 6% 90%;
     --accent-foreground: 240 4% 10%;
-    --destructive: 357 70% 51%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 22 93% 47%;
+    --destructive-foreground: 240 6% 4%;
     --border: 240 6% 90%;
     --input: 240 6% 90%;
     --ring: 357 70% 51%;
     --chart-1: 357 70% 51%;
     --chart-2: 240 4% 27%;
-    --chart-3: 357 78% 74%;
+    --chart-3: 357 100% 74%;
     --chart-4: 240 5% 65%;
-    --chart-5: 357 74% 34%;
+    --chart-5: 357 71% 41%;
     --chart-grid: 240 5% 84%;
     --chart-surface: 0 0% 100%;
+    --font-sans:
+      'Pretendard Variable', Pretendard, 'Noto Sans KR', -apple-system, 'Apple SD Gothic Neo',
+      'Malgun Gothic', 'Nanum Gothic', sans-serif;
+    --font-heading:
+      'Pretendard Variable', Pretendard, 'Noto Sans KR', -apple-system, 'Apple SD Gothic Neo',
+      'Malgun Gothic', 'Nanum Gothic', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
     --sidebar: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -39,6 +52,32 @@
 
   .dark,
   [data-theme='dark'] {
+    --background: 240 6% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 4% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 4% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 357 90% 63%;
+    --primary-foreground: 240 6% 4%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 240 5% 96%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 4% 27%;
+    --accent-foreground: 240 5% 96%;
+    --destructive: 22 95% 62%;
+    --destructive-foreground: 240 6% 4%;
+    --border: 240 4% 27%;
+    --input: 240 4% 27%;
+    --ring: 357 90% 63%;
+    --chart-1: 357 90% 63%;
+    --chart-2: 240 5% 84%;
+    --chart-3: 357 100% 74%;
+    --chart-4: 240 4% 46%;
+    --chart-5: 22 95% 62%;
+    --chart-grid: 240 4% 27%;
+    --chart-surface: 240 4% 10%;
     --sidebar: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

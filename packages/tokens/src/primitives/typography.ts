@@ -1,5 +1,25 @@
 export const fontFamily = {
-  sans: ['"NanumBarunGothic"', 'AppleGothic', 'Tahoma', 'Arial', 'sans-serif']
+  sans: [
+    'Pretendard Variable',
+    'Pretendard',
+    'Noto Sans KR',
+    '-apple-system',
+    'Apple SD Gothic Neo',
+    'Malgun Gothic',
+    'Nanum Gothic',
+    'sans-serif'
+  ],
+  heading: [
+    'Pretendard Variable',
+    'Pretendard',
+    'Noto Sans KR',
+    '-apple-system',
+    'Apple SD Gothic Neo',
+    'Malgun Gothic',
+    'Nanum Gothic',
+    'sans-serif'
+  ],
+  mono: ['JetBrains Mono', 'Fira Code', 'Cascadia Code', 'ui-monospace', 'monospace']
 } as const;
 
 export const fontWeight = {

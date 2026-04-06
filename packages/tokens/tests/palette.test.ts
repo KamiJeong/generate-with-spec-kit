@@ -35,9 +35,10 @@ const semanticTokenNames = [
 ] as const satisfies ReadonlyArray<keyof typeof semantic>;
 
 describe('palette completeness', () => {
-  it('includes at least seven gray steps and five primary steps', () => {
+  it('includes complete gray, brand, and destructive scales', () => {
     expect(Object.keys(colors.gray)).toHaveLength(11);
-    expect(Object.keys(colors.primary).length).toBeGreaterThanOrEqual(5);
+    expect(Object.keys(colors.brand)).toHaveLength(11);
+    expect(Object.keys(colors.destructivePalette)).toHaveLength(11);
   });
 
   it('includes the full semantic token set without omissions or extras', () => {
@@ -55,9 +56,12 @@ describe('palette completeness', () => {
 
     expect(contents).toContain('gray-50');
     expect(contents).toContain('gray-950');
-    expect(contents).toContain('primary-50');
-    expect(contents).toContain('primary-950');
+    expect(contents).toContain('brand-50');
+    expect(contents).toContain('brand-950');
+    expect(contents).toContain('destructive-50');
+    expect(contents).toContain('destructive-950');
     expect(contents).toContain('--background');
     expect(contents).toContain('--ring');
+    expect(contents).toContain('--font-sans');
   });
 });

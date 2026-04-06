@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss';
 
-import { gray, primary } from '../primitives/colors';
+import { brand, destructivePalette, gray, primary } from '../primitives/colors';
 import { fontFamily, fontWeight } from '../primitives/typography';
 import { semantic } from '../semantic';
 
@@ -10,6 +10,7 @@ const preset = {
     extend: {
       colors: {
         gray,
+        brand,
         primary: {
           ...primary,
           DEFAULT: semantic.primary,
@@ -38,6 +39,7 @@ const preset = {
           foreground: semantic.accentForeground
         },
         destructive: {
+          ...destructivePalette,
           DEFAULT: semantic.destructive,
           foreground: semantic.destructiveForeground
         },
@@ -46,7 +48,9 @@ const preset = {
         ring: semantic.ring
       },
       fontFamily: {
-        sans: [...fontFamily.sans]
+        sans: [...fontFamily.sans],
+        heading: [...fontFamily.heading],
+        mono: [...fontFamily.mono]
       },
       fontWeight,
       borderRadius: {

@@ -1,4 +1,4 @@
-import { chartHsl, grayHsl, primaryHsl } from '../primitives/colors';
+import { brandHsl, chartHsl, destructiveHsl, grayHsl } from '../primitives/colors';
 
 const alphaVar = (token: string) => `hsl(var(${token}) / <alpha-value>)`;
 
@@ -38,7 +38,7 @@ export const semanticHsl = {
   cardForeground: grayHsl['950'],
   popover: '0 0% 100%',
   popoverForeground: grayHsl['950'],
-  primary: primaryHsl['500'],
+  primary: brandHsl['600'],
   primaryForeground: '0 0% 100%',
   secondary: grayHsl['100'],
   secondaryForeground: grayHsl['900'],
@@ -46,11 +46,11 @@ export const semanticHsl = {
   mutedForeground: grayHsl['500'],
   accent: grayHsl['200'],
   accentForeground: grayHsl['900'],
-  destructive: primaryHsl['500'],
-  destructiveForeground: '0 0% 100%',
+  destructive: destructiveHsl['600'],
+  destructiveForeground: grayHsl['950'],
   border: grayHsl['200'],
   input: grayHsl['200'],
-  ring: primaryHsl['500'],
+  ring: brandHsl['600'],
   chart1: chartHsl['1'],
   chart2: chartHsl['2'],
   chart3: chartHsl['3'],
