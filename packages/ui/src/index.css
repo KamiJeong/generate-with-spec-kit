@@ -28,8 +28,8 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --font-sans:
-    'Pretendard Variable', Pretendard, 'Noto Sans KR', -apple-system, 'Apple SD Gothic Neo',
-    'Malgun Gothic', 'Nanum Gothic', sans-serif;
+    "Pretendard Variable", Pretendard, "Noto Sans KR", -apple-system,
+    "Apple SD Gothic Neo", "Malgun Gothic", "Nanum Gothic", sans-serif;
 }
 
 @layer base {
