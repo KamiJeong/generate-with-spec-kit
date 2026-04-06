@@ -64,7 +64,7 @@ export const Ghost: Story = {
   render: (args) => <Badge {...args} />,
   args: {
     variant: 'ghost',
-    children: 'Helodd',
+    children: 'Ghost',
     asChild: false,
   },
 };

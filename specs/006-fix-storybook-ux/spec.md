@@ -79,7 +79,7 @@
 
 - **FR-001**: 모든 스토리 파일을 Storybook에서 열 때 브라우저 콘솔 에러가 0건이어야 한다.
 - **FR-002**: Storybook 기본 뷰포트를 최소 1280px 너비로 설정하여 컴포넌트가 데스크탑 크기에 맞게 기본 표시되어야 한다.
-- **FR-003**: 주요 컴포넌트(Button, Badge, Alert, Spinner, Tabs, Switch, Avatar, Sheet) 스토리의 핵심 props(variant, size 등)가 Controls 패널에 표시되고 변경 시 컴포넌트에 반영되어야 한다.
+- **FR-003**: 주요 컴포넌트(Button, Badge, Alert, Spinner, Tabs, Switch, Avatar, Sheet) 스토리의 핵심 props(variant, size 등)가 Controls 패널에 표시되고 변경 시 컴포넌트에 반영되어야 한다. 단, Alert/Tabs/Sheet는 이미 render 패턴을 사용하므로 별도 Controls 수정이 불필요하다. Switch.Small은 size 고정 표시 스토리로 유지하며 Controls args 연동은 이 기능 범위에서 제외한다.
 - **FR-004**: 모든 스토리 파일이 프로젝트 린트 규칙(Biome 기반)을 위반 없이 통과해야 한다.
 - **FR-005**: 기존에 정상 동작하던 play 테스트가 이 기능 적용 후에도 깨지지 않아야 한다.
 
@@ -100,3 +100,4 @@
 - props 컨트롤 문제는 ArgTypes 설정 또는 args 전달 방식의 문제로 가정한다.
 - 린트 도구는 프로젝트에 이미 설정된 Biome를 사용한다 (추가 도구 설치 없음).
 - 시각적 검토 피드백은 이 기능의 planning 단계에서 Storybook을 직접 실행하여 수행하며, spec 범위 밖의 추가 개선사항은 별도 기능으로 분리한다.
+- Storybook 핵심 기능(docs 렌더러 등) 동작에 필수적인 공식 애드온 추가는 이 기능 범위에 포함한다.

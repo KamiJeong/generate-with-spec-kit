@@ -210,7 +210,7 @@
 
 - [X] T015 `pnpm --filter @myorg/ui build-storybook` 실행 — 빌드 성공 및 TypeScript 에러 0건 확인 (SC-002, SC-004)
 - [X] T016 [P] `pnpm --filter @myorg/ui test-storybook` 실행 — 기존 play 테스트 모두 통과 확인 (SC-005)
-- [ ] T017 [P] Storybook 개발 서버 실행 후 Button > Destructive, Badge > Secondary, Avatar > Small 스토리에서 Controls 패널 동작 확인 (SC-003)
+- [X] T017 [P] Storybook 개발 서버 실행 후 Button > Destructive, Badge > Secondary, Avatar > Small 스토리에서 Controls 패널 동작 확인 (SC-003)
 
 ---
 
