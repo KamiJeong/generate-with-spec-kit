@@ -10,13 +10,38 @@ describe('tailwind preset', () => {
     expect(preset.theme?.extend?.colors?.primary).toMatchObject({
       DEFAULT: 'hsl(var(--primary) / <alpha-value>)',
       foreground: 'hsl(var(--primary-foreground) / <alpha-value>)',
-      500: '#d92b33'
+      600: '#d92b33'
+    });
+    expect(preset.theme?.extend?.colors?.destructive).toMatchObject({
+      DEFAULT: 'hsl(var(--destructive) / <alpha-value>)',
+      foreground: 'hsl(var(--destructive-foreground) / <alpha-value>)',
+      600: '#ea6c0a'
     });
   });
 
   it('extends typography and border radius tokens', () => {
     expect(preset.theme?.extend?.fontFamily).toEqual({
-      sans: ['"NanumBarunGothic"', 'AppleGothic', 'Tahoma', 'Arial', 'sans-serif']
+      sans: [
+        'Pretendard Variable',
+        'Pretendard',
+        'Noto Sans KR',
+        '-apple-system',
+        'Apple SD Gothic Neo',
+        'Malgun Gothic',
+        'Nanum Gothic',
+        'sans-serif'
+      ],
+      heading: [
+        'Pretendard Variable',
+        'Pretendard',
+        'Noto Sans KR',
+        '-apple-system',
+        'Apple SD Gothic Neo',
+        'Malgun Gothic',
+        'Nanum Gothic',
+        'sans-serif'
+      ],
+      mono: ['JetBrains Mono', 'Fira Code', 'Cascadia Code', 'ui-monospace', 'monospace']
     });
     expect(preset.theme?.extend?.fontWeight).toEqual({
       normal: '400',

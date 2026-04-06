@@ -18,21 +18,37 @@
 | gray-900 | `#18181b` | `240 4% 10%` |
 | gray-950 | `#09090b` | `240 6% 4%` |
 
-### Primary
+### Brand
 
 | Token | Hex | HSL |
 | --- | --- | --- |
-| primary-50 | `#fff1f1` | `357 100% 97%` |
-| primary-100 | `#ffe0e1` | `357 92% 93%` |
-| primary-200 | `#ffc0c2` | `357 85% 85%` |
-| primary-300 | `#ff8e92` | `357 78% 74%` |
-| primary-400 | `#f45b62` | `357 72% 62%` |
-| primary-500 | `#d92b33` | `357 70% 51%` |
-| primary-600 | `#b71e25` | `357 72% 42%` |
-| primary-700 | `#96161c` | `357 74% 34%` |
-| primary-800 | `#741015` | `357 75% 26%` |
-| primary-900 | `#520a0e` | `357 74% 18%` |
-| primary-950 | `#2e0405` | `357 76% 10%` |
+| brand-50 | `#fff1f1` | `357 100% 97%` |
+| brand-100 | `#ffd9db` | `357 100% 93%` |
+| brand-200 | `#ffb3b7` | `357 100% 85%` |
+| brand-300 | `#ff7d84` | `357 100% 74%` |
+| brand-400 | `#f54d57` | `357 90% 63%` |
+| brand-500 | `#ea2d37` | `357 81% 55%` |
+| brand-600 | `#d92b33` | `357 70% 51%` |
+| brand-700 | `#b31f27` | `357 71% 41%` |
+| brand-800 | `#8a1219` | `357 74% 30%` |
+| brand-900 | `#600c11` | `357 76% 21%` |
+| brand-950 | `#3b0709` | `357 78% 13%` |
+
+### Destructive
+
+| Token | Hex | HSL |
+| --- | --- | --- |
+| destructive-50 | `#fff7ed` | `22 100% 97%` |
+| destructive-100 | `#ffedd5` | `22 100% 92%` |
+| destructive-200 | `#fed7aa` | `22 100% 83%` |
+| destructive-300 | `#fdba74` | `22 97% 72%` |
+| destructive-400 | `#fb923c` | `22 95% 62%` |
+| destructive-500 | `#f97316` | `22 94% 53%` |
+| destructive-600 | `#ea6c0a` | `22 93% 47%` |
+| destructive-700 | `#c2590c` | `22 87% 40%` |
+| destructive-800 | `#9a450a` | `22 84% 32%` |
+| destructive-900 | `#7c3a07` | `22 84% 26%` |
+| destructive-950 | `#431d03` | `22 87% 14%` |
 
 ## Semantic Variables
 
@@ -52,15 +68,20 @@
 | `--muted-foreground` | `240 4% 46%` | muted text |
 | `--accent` | `240 6% 90%` | accent surface |
 | `--accent-foreground` | `240 4% 10%` | accent text |
-| `--destructive` | `357 70% 51%` | destructive action |
-| `--destructive-foreground` | `0 0% 100%` | destructive text |
+| `--destructive` | `22 93% 47%` | destructive action |
+| `--destructive-foreground` | `240 6% 4%` | destructive text |
 | `--border` | `240 6% 90%` | borders |
 | `--input` | `240 6% 90%` | input borders |
 | `--ring` | `357 70% 51%` | focus ring |
+| `--font-sans` | Pretendard Variable → Noto Sans KR fallback | body font stack |
+| `--font-heading` | Pretendard Variable → Noto Sans KR fallback | heading font stack |
+| `--font-mono` | JetBrains Mono → Fira Code fallback | mono font stack |
 
 ## Typography
 
-- `fontFamily.sans`: `NanumBarunGothic`, `AppleGothic`, `Tahoma`, `Arial`, `sans-serif`
+- `fontFamily.sans`: `Pretendard Variable`, `Pretendard`, `Noto Sans KR`, `-apple-system`, `Apple SD Gothic Neo`, `Malgun Gothic`, `Nanum Gothic`, `sans-serif`
+- `fontFamily.heading`: `Pretendard Variable`, `Pretendard`, `Noto Sans KR`, `-apple-system`, `Apple SD Gothic Neo`, `Malgun Gothic`, `Nanum Gothic`, `sans-serif`
+- `fontFamily.mono`: `JetBrains Mono`, `Fira Code`, `Cascadia Code`, `ui-monospace`, `monospace`
 - `fontWeight.normal`: `400`
 - `fontWeight.medium`: `500`
 - `fontWeight.semibold`: `600`

@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
 import { brandColor, colors } from '../src/index';
+import { destructiveHsl } from '../src/primitives/colors';
+import { getHue } from './color-utils';
 
 describe('primitive colors', () => {
   it('exposes the gray scale with exact hex values', () => {
@@ -19,23 +21,29 @@ describe('primitive colors', () => {
     });
   });
 
-  it('exposes the primary scale with exact hex values', () => {
-    expect(colors.primary).toEqual({
+  it('exposes the brand scale with exact hex values', () => {
+    expect(colors.brand).toEqual({
       '50': '#fff1f1',
-      '100': '#ffe0e1',
-      '200': '#ffc0c2',
-      '300': '#ff8e92',
-      '400': '#f45b62',
-      '500': '#d92b33',
-      '600': '#b71e25',
-      '700': '#96161c',
-      '800': '#741015',
-      '900': '#520a0e',
-      '950': '#2e0405'
+      '100': '#ffd9db',
+      '200': '#ffb3b7',
+      '300': '#ff7d84',
+      '400': '#f54d57',
+      '500': '#ea2d37',
+      '600': '#d92b33',
+      '700': '#b31f27',
+      '800': '#8a1219',
+      '900': '#600c11',
+      '950': '#3b0709'
     });
   });
 
   it('exports the brand base color shortcut', () => {
     expect(brandColor).toBe('#d92b33');
+  });
+
+  it('keeps the destructive palette on a distinct orange-red hue', () => {
+    expect(colors.destructivePalette).toBeDefined();
+    expect(getHue(destructiveHsl['600'])).toBeGreaterThan(15);
+    expect(getHue(destructiveHsl['600'])).toBeLessThan(30);
   });
 });

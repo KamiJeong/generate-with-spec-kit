@@ -12,18 +12,32 @@ export const gray = {
   '950': '#09090b'
 } as const;
 
-export const primary = {
+export const brand = {
   '50': '#fff1f1',
-  '100': '#ffe0e1',
-  '200': '#ffc0c2',
-  '300': '#ff8e92',
-  '400': '#f45b62',
-  '500': '#d92b33',
-  '600': '#b71e25',
-  '700': '#96161c',
-  '800': '#741015',
-  '900': '#520a0e',
-  '950': '#2e0405'
+  '100': '#ffd9db',
+  '200': '#ffb3b7',
+  '300': '#ff7d84',
+  '400': '#f54d57',
+  '500': '#ea2d37',
+  '600': '#d92b33',
+  '700': '#b31f27',
+  '800': '#8a1219',
+  '900': '#600c11',
+  '950': '#3b0709'
+} as const;
+
+export const destructivePalette = {
+  '50': '#fff7ed',
+  '100': '#ffedd5',
+  '200': '#fed7aa',
+  '300': '#fdba74',
+  '400': '#fb923c',
+  '500': '#f97316',
+  '600': '#ea6c0a',
+  '700': '#c2590c',
+  '800': '#9a450a',
+  '900': '#7c3a07',
+  '950': '#431d03'
 } as const;
 
 export const grayHsl = {
@@ -40,26 +54,52 @@ export const grayHsl = {
   '950': '240 6% 4%'
 } as const;
 
-export const primaryHsl = {
+export const brandHsl = {
   '50': '357 100% 97%',
-  '100': '357 92% 93%',
-  '200': '357 85% 85%',
-  '300': '357 78% 74%',
-  '400': '357 72% 62%',
-  '500': '357 70% 51%',
-  '600': '357 72% 42%',
-  '700': '357 74% 34%',
-  '800': '357 75% 26%',
-  '900': '357 74% 18%',
-  '950': '357 76% 10%'
+  '100': '357 100% 93%',
+  '200': '357 100% 85%',
+  '300': '357 100% 74%',
+  '400': '357 90% 63%',
+  '500': '357 81% 55%',
+  '600': '357 70% 51%',
+  '700': '357 71% 41%',
+  '800': '357 74% 30%',
+  '900': '357 76% 21%',
+  '950': '357 78% 13%'
+} as const;
+
+export const destructiveHsl = {
+  '50': '22 100% 97%',
+  '100': '22 100% 92%',
+  '200': '22 100% 83%',
+  '300': '22 97% 72%',
+  '400': '22 95% 62%',
+  '500': '22 94% 53%',
+  '600': '22 93% 47%',
+  '700': '22 87% 40%',
+  '800': '22 84% 32%',
+  '900': '22 84% 26%',
+  '950': '22 87% 14%'
 } as const;
 
 export const chartHsl = {
-  '1': primaryHsl['500'],
+  '1': brandHsl['600'],
   '2': grayHsl['700'],
-  '3': primaryHsl['300'],
+  '3': brandHsl['300'],
   '4': grayHsl['400'],
-  '5': primaryHsl['700'],
+  '5': brandHsl['700'],
   grid: grayHsl['300'],
   surface: '0 0% 100%'
 } as const;
+
+/**
+ * @deprecated `primary` is a compatibility alias for `brand`. Use `brand` instead.
+ * This export will be removed in a future major version once all consumers migrate.
+ */
+export const primary = brand;
+
+/**
+ * @deprecated `primaryHsl` is a compatibility alias for `brandHsl`. Use `brandHsl` instead.
+ * This export will be removed in a future major version once all consumers migrate.
+ */
+export const primaryHsl = brandHsl;
