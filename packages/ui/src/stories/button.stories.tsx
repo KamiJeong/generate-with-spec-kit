@@ -18,6 +18,12 @@ const meta = {
         'ghost',
         'link',
       ],
+      description: 'Visual style variant for the button.',
+      table: {
+        defaultValue: {
+          summary: 'default',
+        },
+      },
     },
     size: {
       control: 'select',
@@ -31,9 +37,21 @@ const meta = {
         'icon-sm',
         'icon-lg',
       ],
+      description: 'Size preset for the button.',
+      table: {
+        defaultValue: {
+          summary: 'default',
+        },
+      },
     },
     disabled: {
       control: 'boolean',
+      description: 'Disables the button interaction.',
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+      },
     },
   },
   parameters: {
@@ -65,10 +83,22 @@ export const Default: Story = {
   },
 };
 
+export const Playground: Story = {
+  render: (args) => <Button {...args} />,
+  args: {
+    variant: 'default',
+    size: 'default',
+    disabled: false,
+    children: 'Button',
+  },
+};
+
 export const Destructive: Story = {
   render: (args) => <Button {...args} />,
   args: {
     variant: 'destructive',
+    size: 'default',
+    disabled: false,
     children: 'Destructive',
   },
 };
@@ -77,6 +107,8 @@ export const Outline: Story = {
   render: (args) => <Button {...args} />,
   args: {
     variant: 'outline',
+    size: 'default',
+    disabled: false,
     children: 'Outline',
   },
 };
@@ -85,6 +117,8 @@ export const Secondary: Story = {
   render: (args) => <Button {...args} />,
   args: {
     variant: 'secondary',
+    size: 'default',
+    disabled: false,
     children: 'Secondary',
   },
 };
@@ -93,6 +127,8 @@ export const Ghost: Story = {
   render: (args) => <Button {...args} />,
   args: {
     variant: 'ghost',
+    size: 'default',
+    disabled: false,
     children: 'Ghost',
   },
 };
@@ -101,6 +137,8 @@ export const Link: Story = {
   render: (args) => <Button {...args} />,
   args: {
     variant: 'link',
+    size: 'default',
+    disabled: false,
     children: 'Link',
   },
 };

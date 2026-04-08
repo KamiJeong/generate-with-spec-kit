@@ -10,6 +10,12 @@ const meta = {
     variant: {
       control: 'select',
       options: ['default', 'destructive'],
+      description: 'Semantic alert style variant.',
+      table: {
+        defaultValue: {
+          summary: 'default',
+        },
+      },
     },
   },
   parameters: {
@@ -35,6 +41,18 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole('alert')).toBeInTheDocument();
     await expect(canvas.getByText('Heads up')).toBeInTheDocument();
+  },
+};
+
+export const Playground: Story = {
+  render: (args) => (
+    <Alert {...args} className="w-96">
+      <AlertTitle>Heads up</AlertTitle>
+      <AlertDescription>Descriptive alert copy.</AlertDescription>
+    </Alert>
+  ),
+  args: {
+    variant: 'default',
   },
 };
 

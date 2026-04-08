@@ -7,6 +7,17 @@ const meta = {
   title: 'Components/Kbd',
   component: Kbd,
   tags: ['autodocs'],
+  argTypes: {
+    children: {
+      control: 'text',
+      description: 'Keyboard shortcut text content.',
+      table: {
+        defaultValue: {
+          summary: 'K',
+        },
+      },
+    },
+  },
   render: () => (
     <div className="flex gap-3">
       <Kbd>K</Kbd>
@@ -24,5 +35,12 @@ export const Default: Story = {
     await expect(canvas.getAllByText(/K/)[0].tagName).toBe('KBD');
     await expect(canvas.getByText('K')).toBeInTheDocument();
     await expect(canvas.getByText('Shift + K')).toBeInTheDocument();
+  },
+};
+
+export const Playground: Story = {
+  render: (args) => <Kbd>{args.children}</Kbd>,
+  args: {
+    children: 'K',
   },
 };

@@ -6,7 +6,37 @@ const meta = {
   title: 'Components/Input',
   component: Input,
   tags: ['autodocs'],
-  render: () => <Input aria-label="Email" placeholder="Email" />,
+  argTypes: {
+    type: {
+      control: 'select',
+      options: ['text', 'email', 'password', 'number', 'search', 'tel', 'url'],
+      description: 'HTML input type attribute.',
+      table: {
+        defaultValue: {
+          summary: 'text',
+        },
+      },
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Hint text shown when the input is empty.',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disables text entry.',
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+      },
+    },
+  },
+  args: {
+    type: 'text',
+    placeholder: 'Email',
+    disabled: false,
+  },
+  render: (args) => <Input aria-label="Email" {...args} />,
 } satisfies Meta<typeof Input>;
 
 export default meta;

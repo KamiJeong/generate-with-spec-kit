@@ -10,14 +10,23 @@ const meta = {
     size: {
       control: 'select',
       options: ['sm', 'default', 'lg'],
+      description: 'Spinner size preset.',
+      table: {
+        defaultValue: {
+          summary: 'default',
+        },
+      },
     },
+  },
+  args: {
+    size: 'default',
   },
 } satisfies Meta<typeof Spinner>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 export const Default: Story = {
-  render: () => <Spinner />,
+  render: (args) => <Spinner {...args} />,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByLabelText('Loading')).toBeInTheDocument();

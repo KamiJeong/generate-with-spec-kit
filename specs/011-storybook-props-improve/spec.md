@@ -67,8 +67,8 @@ Storybook의 Docs 탭에서 각 컴포넌트의 props 테이블이 완전하게 
 - **FR-001**: `packages/ui/src/components` 및 `packages/ui/src/stories` 내 모든 컴포넌트 스토리 파일은 meta 객체의 `argTypes`에 해당 컴포넌트의 주요 props를 선언해야 한다.
 - **FR-002**: `argTypes`의 각 항목은 컨트롤 타입(`control`)을 명시해야 하며, enum/union 타입은 `select`, boolean은 `boolean`, string은 `text`, number는 `number`로 설정해야 한다.
 - **FR-003**: enum/union 타입 props는 `options` 배열에 가능한 모든 값을 나열해야 한다.
-- **FR-004**: 각 named story(Default 제외)는 args를 컴포넌트에 전달하는 방식으로 작성되어야 하며, 해당 스토리의 초기 상태를 나타내는 `args`를 포함해야 한다.
-- **FR-005**: `children` prop이 있는 컴포넌트는 argTypes에 `children`을 적절한 컨트롤로 정의해야 한다.
+- **FR-004**: Controls 연동 목적의 named story(Playground, Destructive, Outline 등 상태 표현 스토리)는 args를 컴포넌트에 전달하는 방식으로 작성되어야 하며, 해당 스토리의 초기 상태를 나타내는 `args`를 포함해야 한다. 단, 여러 variant를 나란히 보여주는 showcase 스토리(Sizes, Variants, IconSizes 등)는 고정 render를 허용한다.
+- **FR-005**: `children` prop이 있는 컴포넌트는 단순 컴포넌트의 경우 meta `argTypes`에 `children: { control: 'text' }`를 정의해야 한다. 단, compound 구조(children이 복잡한 JSX이거나 여러 하위 컴포넌트로 구성된 경우) 또는 play 함수 보호가 필요한 스토리에서는 story-level `args`에 `children` 값을 제공하는 것으로 대체할 수 있다.
 - **FR-006**: `disabled`, `checked`, `readOnly`, `required` 등 boolean props는 `control: 'boolean'`으로 명시해야 한다.
 - **FR-007**: Default 스토리가 고정된 render 함수를 사용하는 경우, Controls와 연동되는 Playground 스토리를 추가하거나 Default 스토리가 args를 받도록 수정해야 한다.
 - **FR-008**: 수정 후 기존 play 함수(interaction tests)는 동작이 유지되어야 한다.
