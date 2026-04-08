@@ -2,6 +2,23 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from 'storybook/test';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/tabs';
 
+function renderTabsStory(orientation: 'horizontal' | 'vertical') {
+  return (
+    <Tabs
+      defaultValue="account"
+      orientation={orientation}
+      className={orientation === 'vertical' ? 'w-[32rem]' : 'w-80'}
+    >
+      <TabsList>
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">Account content</TabsContent>
+      <TabsContent value="password">Password content</TabsContent>
+    </Tabs>
+  );
+}
+
 const meta = {
   title: 'Components/Tabs',
   component: Tabs,
@@ -10,18 +27,15 @@ const meta = {
     orientation: {
       control: 'select',
       options: ['horizontal', 'vertical'],
+      description: 'Tabs list orientation.',
+      table: {
+        defaultValue: {
+          summary: 'horizontal',
+        },
+      },
     },
   },
-  render: () => (
-    <Tabs defaultValue="account" className="w-80">
-      <TabsList>
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
-      </TabsList>
-      <TabsContent value="account">Account content</TabsContent>
-      <TabsContent value="password">Password content</TabsContent>
-    </Tabs>
-  ),
+  render: () => renderTabsStory('horizontal'),
 } satisfies Meta<typeof Tabs>;
 
 export default meta;
@@ -34,9 +48,20 @@ export const Default: Story = {
   },
 };
 
+export const Playground: Story = {
+  render: (args) => renderTabsStory(args.orientation ?? 'horizontal'),
+  args: {
+    orientation: 'horizontal',
+  },
+};
+
 export const Line: Story = {
-  render: () => (
-    <Tabs defaultValue="account" className="w-80">
+  render: (args) => (
+    <Tabs
+      defaultValue="account"
+      orientation={args.orientation}
+      className="w-80"
+    >
       <TabsList variant="line">
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="password">Password</TabsTrigger>
@@ -45,11 +70,18 @@ export const Line: Story = {
       <TabsContent value="password">Password content</TabsContent>
     </Tabs>
   ),
+  args: {
+    orientation: 'horizontal',
+  },
 };
 
 export const Vertical: Story = {
-  render: () => (
-    <Tabs defaultValue="account" orientation="vertical" className="w-[32rem]">
+  render: (args) => (
+    <Tabs
+      defaultValue="account"
+      orientation={args.orientation}
+      className="w-[32rem]"
+    >
       <TabsList>
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="password">Password</TabsTrigger>
@@ -58,9 +90,15 @@ export const Vertical: Story = {
       <TabsContent value="password">Password content</TabsContent>
     </Tabs>
   ),
+  args: {
+    orientation: 'vertical',
+  },
 };
 
 export const AllOrientations: Story = {
+  args: {
+    orientation: 'horizontal',
+  },
   render: () => (
     <div className="grid gap-6 lg:grid-cols-2">
       <Tabs defaultValue="account" className="w-80">

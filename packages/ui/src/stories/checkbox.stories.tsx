@@ -6,7 +6,31 @@ const meta = {
   title: 'Components/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
-  render: () => <Checkbox aria-label="Accept" />,
+  argTypes: {
+    defaultChecked: {
+      control: 'boolean',
+      description: 'Initial checked state in uncontrolled mode.',
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disables checkbox interaction.',
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+      },
+    },
+  },
+  args: {
+    defaultChecked: false,
+    disabled: false,
+  },
+  render: (args) => <Checkbox aria-label="Accept" {...args} />,
 } satisfies Meta<typeof Checkbox>;
 
 export default meta;

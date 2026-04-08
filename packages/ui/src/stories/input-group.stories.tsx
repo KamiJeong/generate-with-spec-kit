@@ -7,8 +7,32 @@ const meta = {
   title: 'Components/InputGroup',
   component: InputGroup,
   tags: ['autodocs'],
-  render: () => (
-    <InputGroup prefix="https://" suffix=".com">
+  argTypes: {
+    prefix: {
+      control: 'text',
+      description: 'Text shown before the input value. String values only.',
+      table: {
+        defaultValue: {
+          summary: 'https://',
+        },
+      },
+    },
+    suffix: {
+      control: 'text',
+      description: 'Text shown after the input value. String values only.',
+      table: {
+        defaultValue: {
+          summary: '.com',
+        },
+      },
+    },
+  },
+  args: {
+    prefix: 'https://',
+    suffix: '.com',
+  },
+  render: (args) => (
+    <InputGroup {...args}>
       <Input aria-label="Website" defaultValue="acme" />
     </InputGroup>
   ),

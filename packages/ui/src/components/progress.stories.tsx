@@ -7,9 +7,30 @@ const meta = {
   title: 'Components/Progress',
   component: Progress,
   tags: ['autodocs'],
+  argTypes: {
+    value: {
+      control: { type: 'number', min: 0, max: 100 },
+      description: 'Current progress value between 0 and max.',
+      table: {
+        defaultValue: {
+          summary: '50',
+        },
+      },
+    },
+    max: {
+      control: { type: 'number', min: 1 },
+      description: 'Maximum value used to calculate progress.',
+      table: {
+        defaultValue: {
+          summary: '100',
+        },
+      },
+    },
+  },
   args: {
     'aria-label': 'File upload progress',
     value: 50,
+    max: 100,
   },
 } satisfies Meta<typeof Progress>;
 
@@ -22,5 +43,19 @@ export const Default: Story = {
     const progressbar = canvas.getByRole('progressbar');
     await expect(progressbar).toBeInTheDocument();
     await expect(progressbar.firstElementChild).not.toBeNull();
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    value: 35,
+    max: 100,
+  },
+};
+
+export const Complete: Story = {
+  args: {
+    value: 100,
+    max: 100,
   },
 };

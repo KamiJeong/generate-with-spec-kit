@@ -14,6 +14,14 @@ const meta = {
   title: 'Components/Card',
   component: Card,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Card uses compound subcomponents for layout, so this story documents composed usage instead of exposing a Controls surface for the nested structure.',
+      },
+    },
+  },
   render: () => (
     <Card className="w-96">
       <CardHeader>
