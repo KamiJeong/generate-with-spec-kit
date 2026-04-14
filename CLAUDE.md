@@ -1,4 +1,4 @@
-# generate-with-spec-kit Development Guidelines
+﻿# generate-with-spec-kit Development Guidelines
 
 ## Stack
 TypeScript 5.x, React 18+, Storybook 10.3.4 (`@storybook/react-vite`), Tailwind CSS v4, shadcn/ui, Radix UI, Biome v2.4.9, Vitest 2.x, tsup v8, `@storybook/addon-vitest`, `@storybook/addon-mcp`, `pretendard`, `@fontsource/noto-sans-kr`
