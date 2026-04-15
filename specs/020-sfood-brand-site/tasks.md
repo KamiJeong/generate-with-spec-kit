@@ -185,7 +185,7 @@
 - [X] T050 Run quickstart validation commands and fix failures in `apps/sfood/package.json`, `apps/sfood/src`, and `apps/sfood/tests`
 - [X] T051 Audit rendered copy for Korean tone, missing placeholders, and forbidden exact quality names in `apps/sfood/src/content/site.ts`
 - [X] T052 Audit responsive layout and semantic token usage in `apps/sfood/src/index.css` and `apps/sfood/src/pages`
-- [X] T053 Run final `pnpm --filter @myorg/sfood test`, `pnpm --filter @myorg/sfood lint`, and `pnpm --filter @myorg/sfood build` from repository root
+- [X] T053 Run final `pnpm --filter @myorg/sfood-by-codex test`, `pnpm --filter @myorg/sfood-by-codex lint`, and `pnpm --filter @myorg/sfood-by-codex build` from repository root
 
 ---
 

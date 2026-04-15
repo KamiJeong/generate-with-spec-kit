@@ -11,8 +11,8 @@ describe('US4 brand and product portfolio', () => {
   it('distinguishes consumer and business brand lines', () => {
     renderBrands();
 
-    expect(screen.getByText('Consumer Brand')).toBeInTheDocument();
-    expect(screen.getByText('Business Solution')).toBeInTheDocument();
+    expect(screen.getAllByText('Consumer Brand').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Business Solution').length).toBeGreaterThan(0);
   });
 
   it('shows required product categories', () => {

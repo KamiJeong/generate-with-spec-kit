@@ -21,9 +21,9 @@
 ## 권장 테스트 명령
 
 ```powershell
-pnpm --filter @myorg/sfood test
-pnpm --filter @myorg/sfood lint
-pnpm --filter @myorg/sfood build
+pnpm --filter @myorg/sfood-by-codex test
+pnpm --filter @myorg/sfood-by-codex lint
+pnpm --filter @myorg/sfood-by-codex build
 ```
 
 ## 수동 검증
@@ -31,7 +31,7 @@ pnpm --filter @myorg/sfood build
 1. 개발 서버를 실행한다.
 
 ```powershell
-pnpm --filter @myorg/sfood dev
+pnpm --filter @myorg/sfood-by-codex dev
 ```
 
 2. 브라우저에서 다음 URL을 확인한다.

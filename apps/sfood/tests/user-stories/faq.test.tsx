@@ -13,7 +13,7 @@ describe('US6 FAQ support', () => {
     renderFaq();
 
     for (const category of ['브랜드', '제품', '품질', '구매/제휴', '채용']) {
-      expect(screen.getByText(category)).toBeInTheDocument();
+      expect(screen.getAllByText(category).length).toBeGreaterThan(0);
     }
   });
 
@@ -27,6 +27,6 @@ describe('US6 FAQ support', () => {
     trigger.focus();
     await user.keyboard('{Enter}');
 
-    expect(screen.getByText(/프리미엄 육가공 전문성/)).toBeInTheDocument();
+    expect(screen.getAllByText(/프리미엄 육가공 전문성/).length).toBeGreaterThan(0);
   });
 });

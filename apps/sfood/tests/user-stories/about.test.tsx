@@ -16,9 +16,9 @@ describe('US2 company identity and trust', () => {
     expect(
       screen.getByRole('heading', { level: 1, name: '좋은 식품의 기준을 새롭게 만듭니다' })
     ).toBeInTheDocument();
-    expect(screen.getByText(/B2B와 B2C/)).toBeInTheDocument();
-    expect(screen.getByText(/육가공 및 Meal Solution/)).toBeInTheDocument();
-    expect(screen.getByText(/품질 중심 운영/)).toBeInTheDocument();
+    expect(screen.getAllByText(/B2B와 B2C/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/육가공 및 Meal Solution/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/품질 중심 운영/).length).toBeGreaterThan(0);
   });
 
   it('does not render exact certification or award names', () => {
