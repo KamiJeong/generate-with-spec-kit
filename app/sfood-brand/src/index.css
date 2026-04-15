@@ -1,0 +1,70 @@
+@import "@myorg/tokens/css";
+@import "tailwindcss";
+
+@source ".";
+@source "../index.html";
+@source "../../packages/ui/src";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* SFood 브랜드 컬러 */
+  --color-sfood-red: hsl(350 72% 38%);
+  --color-sfood-red-light: hsl(350 72% 95%);
+  --color-sfood-cream: hsl(40 30% 97%);
+  --color-sfood-dark: hsl(210 15% 15%);
+  --color-sfood-gold: hsl(38 80% 52%);
+
+  --font-sans:
+    "Pretendard Variable", Pretendard, "Noto Sans KR", -apple-system,
+    "Apple SD Gothic Neo", "Malgun Gothic", "Nanum Gothic", sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  #root {
+    min-height: 100svh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
