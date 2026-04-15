@@ -1,0 +1,17 @@
+[mcp_servers.storybook]
+url = "http://localhost:6006/mcp"
+
+[mcp_servers.storybook.tools.get-storybook-story-instructions]
+approval_mode = "approve"
+
+[mcp_servers.storybook.tools.list-all-documentation]
+approval_mode = "approve"
+
+[mcp_servers.storybook.tools.run-story-tests]
+approval_mode = "approve"
+
+[mcp_servers.storybook.tools.preview-stories]
+approval_mode = "approve"
+
+[mcp_servers.storybook.tools.get-documentation]
+approval_mode = "approve"
