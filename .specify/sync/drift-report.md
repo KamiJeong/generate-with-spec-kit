@@ -1,64 +1,79 @@
 # Spec Drift Report
 
-Generated: 2026-04-09
+Generated: 2026-04-15T10:55:00+09:00
 Project: generate-with-spec-kit
 
 ## Summary
 
 | Category | Count |
 |----------|-------|
-| Specs Analyzed | 1 |
-| Requirements Checked | 10 |
-| ✓ Aligned | 4 (40%) |
-| ⚠️ Drifted | 0 (0%) |
+| Specs Analyzed | 1 (active: 019-sfood-brand-site) |
+| Requirements Checked | 19 (FR×12 + SC×7) |
+| ✓ Aligned | 17 (89.5%) |
+| ⚠️ Drifted | 2 (10.5%) |
 | ✗ Not Implemented | 0 (0%) |
-| ⏳ Pending Manual Verification | 6 (60%) |
-| 🆕 Unspecced Code | 0 |
+| 🆕 Unspecced Code | 2 (의도적, tasks.md 명시) |
+
+---
 
 ## Detailed Findings
 
-### Spec: 013-mcp-storybook-short - Storybook MCP 서버 적용
+### Spec: 019-sfood-brand-site — SFood 브랜드 사이트
 
 #### Aligned ✓
 
-- FR-001: Storybook 개발 서버 실행 시 MCP 서버 엔드포인트 자동 활성화 → `@storybook/addon-mcp` in `packages/ui/.storybook/main.ts:14`
-- FR-008: MCP 프로토콜 지원 에이전트 연결 → `.claude/settings.json` mcpServers.storybook 설정
-- FR-009: CLAUDE.md에 MCP 서버 사용 지침 포함 → `CLAUDE.md:36-51` MCP (Storybook) 섹션
-- FR-010: 3개 도구셋 모두 활성화 → `@storybook/addon-mcp` 기본 설정으로 전체 활성화 (별도 비활성화 옵션 미사용)
-
-#### Pending Manual Verification ⏳
-
-- FR-002: 전체 컴포넌트 목록 제공 → addon 내장 기능, `list-all-documentation` 도구 호출로 검증 필요
-- FR-003: 개별 컴포넌트 상세 문서 제공 → addon 내장 기능, `get-documentation` 도구 호출로 검증 필요
-- FR-004: 스토리 소스 코드 및 문서 제공 → addon 내장 기능, `get-documentation-for-story` 도구 호출로 검증 필요
-- FR-005: 스토리 작성 가이드 제공 → addon 내장 기능, `get-storybook-story-instructions` 도구 호출로 검증 필요
-- FR-006: 스토리 테스트 실행 및 결과 반환 → addon 내장 기능, `run-story-tests` 도구 호출로 검증 필요
-- FR-007: 스토리 렌더링 미리보기 제공 → addon 내장 기능, `preview-stories` 도구 호출로 검증 필요
+- **FR-001**: 클라이언트 사이드 라우팅 8개 경로 → `app/sfood-brand/src/App.tsx:21-29`
+- **FR-002**: sticky 헤더 + scrollY>10 불투명 전환 + Sheet 드로어 + NavLink active → `SiteHeader.tsx`, `SiteFooter.tsx`
+- **FR-004**: 외부 API 없음 — fetch/axios 0건, `content/*.ts` 정적 데이터만 사용
+- **FR-005**: 전체 한국어 가상 콘텐츠, Lorem Ipsum 0건 확인
+- **FR-006**: 메인 5개 섹션 — `HeroSection`, `StatsSection`, `BrandsPreviewSection`, `SustainabilityTeaser`, `CtaSection` (`HomePage.tsx:15-19`)
+- **FR-007**: B2C 2개 + B2B 2개 카드 그리드 구분 → `BrandsGrid.tsx:5-6`, `brands.ts`
+- **FR-008**: `/talent` 인재상·채용 프로세스·복리후생 → `PersonaSection`, `ProcessSection`, `BenefitsSection`
+- **FR-009**: FAQ `@myorg/ui Accordion` (`type="multiple"`) + 카테고리 필터 탭 → `AccordionFaq.tsx:46`
+- **FR-010**: Tailwind `sm:`, `lg:` 반응형 클래스 전체 컴포넌트에 적용
+- **FR-011**: `@theme` 블록 5개 SFood 커스텀 컬러 토큰 → `index.css:36-40`
+- **FR-012**: FSSC 22000, HACCP, DLG 국제 품평회 배지·아이콘 → `CertificationSection.tsx:6,15,24`
+- **SC-001**: 8개 라우트 빌드 성공 (TypeScript 0 오류, Vite 빌드 통과)
+- **SC-002**: 헤더 내비게이션에서 모든 서브 페이지 1클릭 도달
+- **SC-004**: 전체 한국어 가상 콘텐츠 완비, Lorem Ipsum 0건
+- **SC-005**: `bg-sfood-red`, `text-sfood-gold`, `bg-sfood-cream` 등 브랜드 컬러 일관 적용
+- **SC-006**: FAQ 아코디언 `userEvent.click()` 테스트 통과 (`FaqPage.test.tsx`)
+- **SC-007**: 모든 NavLink/Link → App.tsx 라우트 대응; 미매핑 경로는 `NotFoundPage`로 처리
 
 #### Drifted ⚠️
 
-없음
+- **FR-003**: Spec — "모바일 드로어에서는 **아코디언 서브메뉴**를 제공"  
+  Implementation — `SiteHeader.tsx:129-156`: `useState(mobileSubOpen)` 커스텀 toggle + ChevronDown 애니메이션. `@myorg/ui Accordion` 미사용.  
+  - Location: `app/sfood-brand/src/components/layout/SiteHeader.tsx:129-156`  
+  - Severity: **minor** — 기능·시각 동일, 사용자 경험 차이 없음
+
+- **SC-003**: 반응형 검증(375px/768px/1280px) — Tailwind 반응형 클래스로 구현됨. 브라우저 수동 시각 검증 미완료(T054 Phase 9 태스크).  
+  - Location: `app/sfood-brand/src/` 전체  
+  - Severity: **minor** — 코드 구조 완비, 수동 검증 권장
 
 #### Not Implemented ✗
 
-없음
+없음.
 
-#### Success Criteria
-
-- SC-001: MCP 엔드포인트 응답 가능 → 구현 완료 (addon 등록), 수동 검증 대기
-- SC-002: 컴포넌트 100% 조회 가능 → 수동 검증 대기
-- SC-003: 문서 조회~테스트 실행 5분 이내 → 수동 검증 대기
-- SC-004: props 정보 100% 일치 → 수동 검증 대기
+---
 
 ### Unspecced Code 🆕
 
-없음. 이 feature는 설정 파일 변경만 포함하며, spec 범위 외 코드 추가 없음.
+| Feature | Location | Rationale |
+|---------|----------|-----------|
+| FAQ 카테고리 필터 탭 | `AccordionFaq.tsx:19-32` | FR-009 초과 구현이나 UX 개선. spec 위반 없음 |
+| `document.title` 동적 업데이트 | 각 `*Page.tsx` (`useEffect`) | T056 태스크 명시 구현 |
+
+---
 
 ## Inter-Spec Conflicts
 
 없음.
 
+---
+
 ## Recommendations
 
-1. Storybook 개발 서버를 실행하여 수동 검증 대기 중인 FR-002~FR-007 (6개 요구사항)을 검증할 것
-2. 검증 완료 후 tasks.md의 T007~T013을 체크 처리할 것
+1. **FR-003 (minor)**: 모바일 드로어 서브메뉴를 `@myorg/ui Accordion` 교체 시 spec 표현 완전 일치. 선택적.
+2. **SC-003**: `pnpm --filter @myorg/sfood-brand dev` 후 375px/768px/1280px 수동 검증 권장.
+3. **PR 준비**: Critical/High drift 없음 — `019-sfood-brand-site` PR 생성 가능.
