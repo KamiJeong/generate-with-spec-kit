@@ -1,56 +1,55 @@
 {
-  "generated": "2026-04-09T00:00:00Z",
+  "generated": "2026-04-15T10:55:00+09:00",
   "project": "generate-with-spec-kit",
   "summary": {
     "specs_analyzed": 1,
-    "requirements_checked": 10,
-    "aligned": 4,
-    "drifted": 0,
+    "requirements_checked": 19,
+    "aligned": 17,
+    "drifted": 2,
     "not_implemented": 0,
-    "pending_manual_verification": 6,
-    "unspecced_features": 0
+    "unspecced_features": 2
   },
   "specs": [
     {
-      "id": "013-mcp-storybook-short",
-      "title": "Storybook MCP 서버 적용",
-      "aligned": ["FR-001", "FR-008", "FR-009", "FR-010"],
-      "drifted": [],
-      "not_implemented": [],
-      "pending_verification": [
-        {
-          "requirement": "FR-002",
-          "description": "전체 컴포넌트 목록 제공",
-          "reason": "addon 내장 기능 — list-all-documentation 도구 호출로 수동 검증 필요"
-        },
+      "id": "019-sfood-brand-site",
+      "title": "SFood 브랜드 사이트",
+      "aligned": [
+        "FR-001", "FR-002", "FR-004", "FR-005", "FR-006",
+        "FR-007", "FR-008", "FR-009", "FR-010", "FR-011", "FR-012",
+        "SC-001", "SC-002", "SC-004", "SC-005", "SC-006", "SC-007"
+      ],
+      "drifted": [
         {
           "requirement": "FR-003",
-          "description": "개별 컴포넌트 상세 문서 제공",
-          "reason": "addon 내장 기능 — get-documentation 도구 호출로 수동 검증 필요"
+          "spec_text": "모바일 드로어에서는 아코디언 서브메뉴를 제공해야 한다",
+          "actual": "useState(mobileSubOpen) 커스텀 toggle + ChevronDown 애니메이션으로 구현. @myorg/ui Accordion 미사용.",
+          "location": "app/sfood-brand/src/components/layout/SiteHeader.tsx:129-156",
+          "severity": "minor"
         },
         {
-          "requirement": "FR-004",
-          "description": "스토리 소스 코드 및 문서 제공",
-          "reason": "addon 내장 기능 — get-documentation-for-story 도구 호출로 수동 검증 필요"
-        },
-        {
-          "requirement": "FR-005",
-          "description": "스토리 작성 가이드 제공",
-          "reason": "addon 내장 기능 — get-storybook-story-instructions 도구 호출로 수동 검증 필요"
-        },
-        {
-          "requirement": "FR-006",
-          "description": "스토리 테스트 실행 및 결과 반환",
-          "reason": "addon 내장 기능 — run-story-tests 도구 호출로 수동 검증 필요"
-        },
-        {
-          "requirement": "FR-007",
-          "description": "스토리 렌더링 미리보기 제공",
-          "reason": "addon 내장 기능 — preview-stories 도구 호출로 수동 검증 필요"
+          "requirement": "SC-003",
+          "spec_text": "모바일(375px), 태블릿(768px), 데스크톱(1280px) 화면 너비에서 레이아웃 깨짐 없이 모든 콘텐츠가 표시된다",
+          "actual": "Tailwind 반응형 클래스 적용. 브라우저 수동 시각 검증 미완료(T054 Phase 9).",
+          "location": "app/sfood-brand/src/",
+          "severity": "minor"
         }
-      ]
+      ],
+      "not_implemented": []
     }
   ],
-  "unspecced": [],
+  "unspecced": [
+    {
+      "feature": "FAQ 카테고리 필터 탭",
+      "location": "app/sfood-brand/src/components/ui/AccordionFaq.tsx",
+      "lines": 14,
+      "suggested_spec": "FR-009 확장 (의도적 UX 개선)"
+    },
+    {
+      "feature": "document.title 동적 업데이트",
+      "location": "app/sfood-brand/src/pages/*.tsx",
+      "lines": 3,
+      "suggested_spec": "T056 (tasks.md 명시)"
+    }
+  ],
   "conflicts": []
 }
