@@ -10,8 +10,8 @@
     "lint": "biome check src tests"
   },
   "dependencies": {
-    "@myorg/tokens": "workspace:*",
-    "@myorg/ui": "workspace:*",
+    "@kamijeong/tokens": "workspace:*",
+    "@kamijeong/ui": "workspace:*",
     "lucide-react": "0.511.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",

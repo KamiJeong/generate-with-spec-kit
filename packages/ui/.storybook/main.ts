@@ -36,15 +36,15 @@ const config: StorybookConfig = {
     config.resolve.alias = [
       ...existingAlias,
       {
-        find: /^@myorg\/tokens$/,
+        find: /^@kamijeong\/tokens$/,
         replacement: path.resolve(dirname, '../../tokens/src/index.ts'),
       },
       {
-        find: /^@myorg\/tokens\/css$/,
+        find: /^@kamijeong\/tokens\/css$/,
         replacement: path.resolve(dirname, '../../tokens/src/css/base.css'),
       },
       {
-        find: /^@myorg\/tokens\/tailwind$/,
+        find: /^@kamijeong\/tokens\/tailwind$/,
         replacement: path.resolve(
           dirname,
           '../../tokens/src/tailwind/preset.ts'

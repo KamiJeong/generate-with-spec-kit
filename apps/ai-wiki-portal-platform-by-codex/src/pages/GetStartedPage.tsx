@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import { StepList } from '@wiki/components/get-started/StepList';
 import { AiQueryPanel } from '@wiki/components/project/AiQueryPanel';
 import { FeedbackEntry } from '@wiki/components/shared/FeedbackEntry';

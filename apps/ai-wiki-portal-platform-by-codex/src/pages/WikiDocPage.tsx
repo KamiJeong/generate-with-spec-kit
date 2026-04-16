@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import { useParams } from 'react-router-dom';
 import { FeedbackEntry } from '@wiki/components/shared/FeedbackEntry';
 import { EmptyState } from '@wiki/components/shared/StateFeedback';

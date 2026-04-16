@@ -3,7 +3,7 @@ import {
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-} from "@myorg/ui";
+} from "@kamijeong/ui";
 import type { FaqCategory, FaqItem } from "@sfood/content/support";
 import { useState } from "react";
 

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import { IntegrationBadge } from '@wiki/components/shared/StatusIndicators';
 import type { IntegrationStatus } from '@wiki/types';
 

@@ -129,8 +129,8 @@ The release workflow publishes these packages to GitHub Packages:
 
 | Package | Registry | Visibility |
 |---|---|---|
-| `@myorg/tokens` (`packages/tokens`) | `https://npm.pkg.github.com` | Restricted/private |
-| `@myorg/ui` (`packages/ui`) | `https://npm.pkg.github.com` | Restricted/private |
+| `@kamijeong/tokens` (`packages/tokens`) | `https://npm.pkg.github.com` | Restricted/private |
+| `@kamijeong/ui` (`packages/ui`) | `https://npm.pkg.github.com` | Restricted/private |
 
 Before publication, the workflow runs package-specific lint, test, and build gates. It also checks whether the package version already exists in the registry. Existing versions are not republished; the workflow reports them as skipped with a duplicate-version failure category so maintainers can rerun only the failed path.
 
@@ -165,13 +165,13 @@ Run this before merging release automation changes:
 
 ```text
 pnpm release:verify
-pnpm --filter @myorg/tokens lint
-pnpm --filter @myorg/tokens test
-pnpm --filter @myorg/tokens build
-pnpm --filter @myorg/ui lint
-pnpm --filter @myorg/ui test
-pnpm --filter @myorg/ui build
-pnpm --filter @myorg/ui build-storybook
+pnpm --filter @kamijeong/tokens lint
+pnpm --filter @kamijeong/tokens test
+pnpm --filter @kamijeong/tokens build
+pnpm --filter @kamijeong/ui lint
+pnpm --filter @kamijeong/ui test
+pnpm --filter @kamijeong/ui build
+pnpm --filter @kamijeong/ui build-storybook
 ```
 
 ## Spec Kit Documents
@@ -255,7 +255,7 @@ http://localhost:6006/mcp
 The UI package exposes the expected Storybook command:
 
 ```text
-pnpm --filter @myorg/ui storybook
+pnpm --filter @kamijeong/ui storybook
 ```
 
 Run that before expecting Storybook MCP tools to work. Once Storybook is running, agents can use MCP-powered documentation lookup, story previews, and story tests instead of relying only on static code search.

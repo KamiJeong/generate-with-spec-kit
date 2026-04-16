@@ -43,11 +43,18 @@ function matches(text, pattern, message) {
   check(pattern.test(text), message);
 }
 
+function getGithubOwner(repositoryUrl) {
+  if (typeof repositoryUrl !== 'string') return null;
+  const match = repositoryUrl.match(/github\.com[/:]([^/]+)/i);
+  return match?.[1]?.toLowerCase() ?? null;
+}
+
 const workflow = readText(workflowPath);
 const rootPackage = readJson(rootPackagePath);
+const expectedScope = `@${getGithubOwner(rootPackage.repository?.url ?? 'git+https://github.com/kamijeong/generate-with-spec-kit.git') ?? 'kamijeong'}`;
 const packageManifests = [
-  { path: tokensPackagePath, label: 'tokens', expectedName: '@myorg/tokens' },
-  { path: uiPackagePath, label: 'ui', expectedName: '@myorg/ui' },
+  { path: tokensPackagePath, label: 'tokens', expectedName: `${expectedScope}/tokens` },
+  { path: uiPackagePath, label: 'ui', expectedName: `${expectedScope}/ui` },
 ].map((entry) => ({ ...entry, manifest: readJson(entry.path) }));
 
 check(
@@ -65,8 +72,8 @@ check(!/^\s*pull_request:/m.test(workflow), 'publish.yml intentionally has no pu
 
 contains(workflow, 'packages/tokens', 'workflow must include packages/tokens target');
 contains(workflow, 'packages/ui', 'workflow must include packages/ui target');
-contains(workflow, '@myorg/tokens', 'workflow must include @myorg/tokens package identity');
-contains(workflow, '@myorg/ui', 'workflow must include @myorg/ui package identity');
+contains(workflow, `${expectedScope}/tokens`, `workflow must include ${expectedScope}/tokens package identity`);
+contains(workflow, `${expectedScope}/ui`, `workflow must include ${expectedScope}/ui package identity`);
 
 contains(workflow, 'actions/checkout@v4', 'workflow must checkout repository');
 contains(workflow, 'pnpm/action-setup@v4', 'workflow must setup pnpm');
@@ -80,21 +87,25 @@ contains(workflow, 'packages: write', 'package publish jobs must use packages: w
 contains(workflow, 'pages: write', 'Pages deploy job must use pages: write permission');
 contains(workflow, 'id-token: write', 'Pages deploy job must use id-token: write permission');
 
-contains(workflow, 'pnpm --filter @myorg/tokens lint', 'tokens lint gate must run before publish');
-contains(workflow, 'pnpm --filter @myorg/tokens test', 'tokens test gate must run before publish');
-contains(workflow, 'pnpm --filter @myorg/tokens build', 'tokens build gate must run before publish');
-contains(workflow, 'pnpm --filter @myorg/ui lint', 'ui lint gate must run before publish');
-contains(workflow, 'pnpm --filter @myorg/ui test', 'ui test gate must run before publish');
-contains(workflow, 'pnpm --filter @myorg/ui build', 'ui build gate must run before publish');
-contains(workflow, 'pnpm --filter @myorg/ui build-storybook', 'Storybook build gate must run before Pages deploy');
+contains(workflow, 'pnpm --filter @kamijeong/tokens lint', 'tokens lint gate must run before publish');
+contains(workflow, 'pnpm --filter @kamijeong/tokens test', 'tokens test gate must run before publish');
+contains(workflow, 'pnpm --filter @kamijeong/tokens build', 'tokens build gate must run before publish');
+contains(workflow, 'pnpm --filter @kamijeong/ui lint', 'ui lint gate must run before publish');
+contains(workflow, 'pnpm --filter @kamijeong/ui test', 'ui test gate must run before publish');
+contains(workflow, 'pnpm --filter @kamijeong/ui build', 'ui build gate must run before publish');
+contains(workflow, 'pnpm --filter @kamijeong/ui build-storybook', 'Storybook build gate must run before Pages deploy');
 contains(workflow, 'test-storybook --url http://127.0.0.1:6006', 'Storybook test gate must run before Pages deploy');
 
 contains(workflow, 'pnpm view', 'workflow must check duplicate package versions before publish');
 contains(workflow, 'already_published', 'workflow must expose duplicate-version state');
 contains(workflow, 'Verify tokens registry credential', 'tokens publish job must preflight registry credentials');
 contains(workflow, 'Verify UI registry credential', 'ui publish job must preflight registry credentials');
-contains(workflow, 'pnpm --filter @myorg/tokens publish', 'workflow must publish @myorg/tokens');
-contains(workflow, 'pnpm --filter @myorg/ui publish', 'workflow must publish @myorg/ui');
+contains(workflow, 'Verify tokens package identity', 'tokens publish job must preflight owner and scope compatibility');
+contains(workflow, 'Verify UI package identity', 'ui publish job must preflight owner and scope compatibility');
+contains(workflow, 'failure_category=owner-scope-mismatch', 'workflow must explicitly categorize owner and scope mismatches');
+contains(workflow, 'must match repository owner', 'workflow must emit owner-scope remediation guidance');
+contains(workflow, 'pnpm --filter @kamijeong/tokens publish', 'workflow must publish @kamijeong/tokens');
+contains(workflow, 'pnpm --filter @kamijeong/ui publish', 'workflow must publish @kamijeong/ui');
 contains(workflow, '--access restricted', 'package publish must use restricted access');
 contains(workflow, 'tokens_publication', 'workflow summary must include tokens_publication');
 contains(workflow, 'ui_publication', 'workflow summary must include ui_publication');
@@ -103,6 +114,7 @@ contains(workflow, 'failure_category', 'workflow summary must include failure_ca
 contains(workflow, 'failure_category="validation"', 'workflow must explicitly categorize validation failures');
 contains(workflow, 'failure_category="credential"', 'workflow must explicitly categorize credential failures');
 contains(workflow, 'failure_category="permission"', 'workflow must explicitly categorize permission failures');
+contains(workflow, 'owner-scope-mismatch', 'workflow must explicitly categorize owner and scope mismatches in summaries');
 contains(workflow, 'failure_category="duplicate-version"', 'workflow must explicitly categorize duplicate version failures');
 contains(workflow, 'failure_category=external-service', 'workflow must explicitly categorize external service failures');
 
@@ -120,6 +132,10 @@ contains(workflow, 'rerun guidance', 'workflow must include rerun guidance in su
 for (const { path: manifestPath, label, expectedName, manifest } of packageManifests) {
   check(manifest.name === expectedName, `${label} package name must remain ${expectedName}`);
   check(manifest.private !== true, `${label} package must not have private: true because it blocks publish`);
+  check(
+    manifest.name?.startsWith(expectedScope),
+    `${label} package scope must match repository owner namespace ${expectedScope}`,
+  );
   check(
     manifest.publishConfig?.registry === 'https://npm.pkg.github.com',
     `${label} package must publish to https://npm.pkg.github.com`,

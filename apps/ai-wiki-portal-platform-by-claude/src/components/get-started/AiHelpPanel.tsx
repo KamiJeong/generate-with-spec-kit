@@ -1,5 +1,5 @@
 import { SparklesIcon, XIcon } from 'lucide-react';
-import { Button } from '@myorg/ui';
+import { Button } from '@kamijeong/ui';
 
 interface AiHelpPanelProps {
   aiHelpHtml: string;

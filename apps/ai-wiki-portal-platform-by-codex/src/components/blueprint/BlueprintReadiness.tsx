@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertTitle, Button } from '@myorg/ui';
+import { Alert, AlertDescription, AlertTitle, Button } from '@kamijeong/ui';
 import { Link } from 'react-router-dom';
 import { wikiDocPath } from '@wiki/routes';
 import type { Blueprint } from '@wiki/types';

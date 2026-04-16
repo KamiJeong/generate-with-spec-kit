@@ -1,4 +1,4 @@
-import { Button } from '@myorg/ui';
+import { Button } from '@kamijeong/ui';
 import { PageHero } from '@sfood/components/sections/PageHero';
 
 const notFoundContent = {

@@ -1,4 +1,4 @@
-import { Badge, Progress } from '@myorg/ui';
+import { Badge, Progress } from '@kamijeong/ui';
 import {
   getDocumentStatusLabel,
   getExecutionStatusLabel,

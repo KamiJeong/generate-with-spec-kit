@@ -44,11 +44,11 @@ cd generate-with-spec-kit
 pnpm install
 
 # 3. 디자인 토큰 빌드 (앱이 의존)
-pnpm --filter @myorg/tokens build
+pnpm --filter @kamijeong/tokens build
 
 # 4. 개발 서버 실행
 # UI 컴포넌트 라이브러리 (Storybook)
-pnpm --filter @myorg/ui storybook
+pnpm --filter @kamijeong/ui storybook
 
 # AI Wiki Portal 앱
 pnpm --filter @myorg/ai-wiki-portal dev
@@ -67,10 +67,10 @@ pnpm test
 
 | 패키지 | 명령 | 설명 |
 |-------|------|------|
-| `@myorg/tokens` | `pnpm --filter @myorg/tokens build` | 토큰 빌드 |
-| `@myorg/tokens` | `pnpm --filter @myorg/tokens test` | 토큰 테스트 |
-| `@myorg/ui` | `pnpm --filter @myorg/ui storybook` | Storybook 개발 서버 |
-| `@myorg/ui` | `pnpm --filter @myorg/ui build-storybook` | Storybook 정적 빌드 |
+| `@kamijeong/tokens` | `pnpm --filter @kamijeong/tokens build` | 토큰 빌드 |
+| `@kamijeong/tokens` | `pnpm --filter @kamijeong/tokens test` | 토큰 테스트 |
+| `@kamijeong/ui` | `pnpm --filter @kamijeong/ui storybook` | Storybook 개발 서버 |
+| `@kamijeong/ui` | `pnpm --filter @kamijeong/ui build-storybook` | Storybook 정적 빌드 |
 | `@myorg/ai-wiki-portal` | `pnpm --filter @myorg/ai-wiki-portal dev` | 앱 개발 서버 |
 | `@myorg/ai-wiki-portal` | `pnpm --filter @myorg/ai-wiki-portal test` | 앱 테스트 |
 

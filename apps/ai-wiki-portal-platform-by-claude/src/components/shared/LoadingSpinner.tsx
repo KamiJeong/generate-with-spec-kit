@@ -1,4 +1,4 @@
-import { Spinner } from '@myorg/ui';
+import { Spinner } from '@kamijeong/ui';
 
 interface LoadingSpinnerProps {
   size?: 'sm' | 'default' | 'lg';

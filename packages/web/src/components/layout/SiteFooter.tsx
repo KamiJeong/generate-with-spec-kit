@@ -1,4 +1,4 @@
-import { Separator } from '@myorg/ui';
+import { Separator } from '@kamijeong/ui';
 
 import { navItems, siteConfig } from '@web/content/site';
 

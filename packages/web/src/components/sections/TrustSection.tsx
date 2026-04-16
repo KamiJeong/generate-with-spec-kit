@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@myorg/ui';
+} from '@kamijeong/ui';
 
 import { stats, testimonials } from '@web/content/site';
 

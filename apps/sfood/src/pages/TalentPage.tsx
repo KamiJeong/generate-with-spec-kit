@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import { PageHero } from '@sfood/components/sections/PageHero';
 import { SectionHeader } from '@sfood/components/sections/SectionHeader';
 import { hiringSteps, pageContent, talentValues } from '@sfood/content/site';

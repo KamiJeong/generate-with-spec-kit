@@ -1,4 +1,4 @@
-import { Card, CardDescription, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardDescription, CardHeader, CardTitle } from '@kamijeong/ui';
 
 import { features } from '@web/content/site';
 

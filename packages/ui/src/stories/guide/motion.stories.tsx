@@ -1,4 +1,4 @@
-import { motion } from '@myorg/tokens';
+import { motion } from '@kamijeong/tokens';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { MotionDemo } from './_helpers';

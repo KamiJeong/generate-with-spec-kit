@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Button, Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import { Link } from 'react-router-dom';
 import { ExecutionStatusBadge } from '@wiki/components/shared/StatusIndicators';
 import { wikiDocPath } from '@wiki/routes';

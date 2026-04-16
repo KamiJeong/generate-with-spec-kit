@@ -6,7 +6,7 @@ import {
   Badge,
   Card,
   CardContent,
-} from '@myorg/ui';
+} from '@kamijeong/ui';
 import { PageHero } from '@sfood/components/sections/PageHero';
 import { SupportNav } from '@sfood/components/sections/SupportNav';
 import { faqItems, pageContent } from '@sfood/content/site';

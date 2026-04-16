@@ -1,4 +1,4 @@
-import { Field, Input, NativeSelect } from '@myorg/ui';
+import { Field, Input, NativeSelect } from '@kamijeong/ui';
 import type { DocumentCategory } from '@wiki/types';
 
 const categories: Array<{ value: DocumentCategory | 'all'; label: string }> = [

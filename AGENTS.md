@@ -38,12 +38,12 @@ Do not skip directly to implementation without spec and plan artifacts.
 
 ## 5. Command Reference
 
-- `pnpm --filter @myorg/tokens build`
-- `pnpm --filter @myorg/tokens test`
-- `pnpm --filter @myorg/tokens lint`
-- `pnpm --filter @myorg/ui build`
-- `pnpm --filter @myorg/ui lint`
-- `pnpm --filter @myorg/ui build-storybook`
+- `pnpm --filter @kamijeong/tokens build`
+- `pnpm --filter @kamijeong/tokens test`
+- `pnpm --filter @kamijeong/tokens lint`
+- `pnpm --filter @kamijeong/ui build`
+- `pnpm --filter @kamijeong/ui lint`
+- `pnpm --filter @kamijeong/ui build-storybook`
 
 ## 6. 사용 가능한 MCP 도구
 

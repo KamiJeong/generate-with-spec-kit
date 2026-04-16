@@ -1,4 +1,4 @@
-import { Badge, Card, CardContent } from '@myorg/ui';
+import { Badge, Card, CardContent } from '@kamijeong/ui';
 import { PageHero } from '@sfood/components/sections/PageHero';
 import { SupportNav } from '@sfood/components/sections/SupportNav';
 import { contentEntries, pageContent } from '@sfood/content/site';

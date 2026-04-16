@@ -1,4 +1,4 @@
-import { Empty } from '@myorg/ui';
+import { Empty } from '@kamijeong/ui';
 import type { ReactNode } from 'react';
 
 interface EmptyStateProps {

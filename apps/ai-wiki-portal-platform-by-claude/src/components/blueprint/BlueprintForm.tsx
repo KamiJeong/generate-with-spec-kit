@@ -1,4 +1,4 @@
-import { Button } from '@myorg/ui';
+import { Button } from '@kamijeong/ui';
 import { SparklesIcon } from 'lucide-react';
 import { useState } from 'react';
 

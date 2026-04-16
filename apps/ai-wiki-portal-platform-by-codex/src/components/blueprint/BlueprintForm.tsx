@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Field, Textarea } from '@myorg/ui';
+import { Button, Field, Textarea } from '@kamijeong/ui';
 import { Sparkles } from 'lucide-react';
 
 interface BlueprintFormProps {

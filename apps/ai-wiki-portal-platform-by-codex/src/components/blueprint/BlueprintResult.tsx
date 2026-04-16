@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import type { Blueprint } from '@wiki/types';
 
 export function BlueprintResult({ blueprint }: { blueprint: Blueprint }) {

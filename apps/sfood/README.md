@@ -34,6 +34,6 @@ pnpm --filter @myorg/sfood-by-codex build
 ## 구현 메모
 
 - Vite, React, TypeScript, Tailwind CSS 4를 사용합니다.
-- `@myorg/tokens` semantic token과 `@myorg/ui` 컴포넌트를 우선 사용합니다.
+- `@kamijeong/tokens` semantic token과 `@kamijeong/ui` 컴포넌트를 우선 사용합니다.
 - 라우팅은 새 런타임 의존성 없이 `src/routes/route-map.ts`와 `history.pushState` 기반으로 처리합니다.
 - 테스트는 라우트 계약, 콘텐츠 불변 조건, 접근성 구조, 사용자 스토리별 핵심 검증을 포함합니다.

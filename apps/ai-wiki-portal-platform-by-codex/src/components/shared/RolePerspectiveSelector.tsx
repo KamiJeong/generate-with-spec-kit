@@ -1,4 +1,4 @@
-import { Field, NativeSelect } from '@myorg/ui';
+import { Field, NativeSelect } from '@kamijeong/ui';
 import { rolePerspectives } from '@wiki/mock/roles';
 import type { RoleId } from '@wiki/types';
 

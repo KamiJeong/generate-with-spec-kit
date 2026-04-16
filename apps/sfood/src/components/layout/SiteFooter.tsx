@@ -1,4 +1,4 @@
-import { Separator } from '@myorg/ui';
+import { Separator } from '@kamijeong/ui';
 import { siteIdentity } from '@sfood/content/site';
 import { primaryRoutes, supportRoutes } from '@sfood/routes/route-map';
 
