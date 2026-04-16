@@ -119,6 +119,61 @@ If you are staying inside Claude instead of switching tools, `/speckit.implement
 
 After implementation, this repository is configured to run post-implementation hooks for validation and drift analysis.
 
+## Release Automation
+
+This repository publishes release artifacts from `main` only. Feature branches and pull requests validate readiness but do not publish packages or deploy public documentation.
+
+### Private Packages
+
+The release workflow publishes these packages to GitHub Packages:
+
+| Package | Registry | Visibility |
+|---|---|---|
+| `@myorg/tokens` (`packages/tokens`) | `https://npm.pkg.github.com` | Restricted/private |
+| `@myorg/ui` (`packages/ui`) | `https://npm.pkg.github.com` | Restricted/private |
+
+Before publication, the workflow runs package-specific lint, test, and build gates. It also checks whether the package version already exists in the registry. Existing versions are not republished; the workflow reports them as skipped with a duplicate-version failure category so maintainers can rerun only the failed path.
+
+### Storybook on GitHub Pages
+
+The release workflow builds `packages/ui` Storybook and deploys the static `packages/ui/storybook-static` artifact to GitHub Pages. Storybook build or test failures stop the Pages deployment, leaving the currently published site unchanged.
+
+### Required Permissions
+
+The workflow uses least-privilege job permissions:
+
+| Job | Required permissions |
+|---|---|
+| Package validation | `contents: read` |
+| Package publication | `contents: read`, `packages: write` |
+| Storybook build | `contents: read` |
+| GitHub Pages deployment | `contents: read`, `pages: write`, `id-token: write` |
+
+`GITHUB_TOKEN` is used for GitHub Packages publication. Do not print token values in logs, summaries, or artifacts.
+
+### Maintainer Release Flow
+
+1. Merge the release-ready change to `main`.
+2. Confirm `packages/tokens` and `packages/ui` versions are correct.
+3. Publish a GitHub release, or run the publish workflow manually from `main`.
+4. Review the workflow summary for `tokens_publication`, `ui_publication`, `storybook_publication`, `failure_category`, and `page_url`.
+5. If only one path fails, rerun the workflow from `main` and enable only the failed package or Storybook path.
+
+### Local Verification
+
+Run this before merging release automation changes:
+
+```text
+pnpm release:verify
+pnpm --filter @myorg/tokens lint
+pnpm --filter @myorg/tokens test
+pnpm --filter @myorg/tokens build
+pnpm --filter @myorg/ui lint
+pnpm --filter @myorg/ui test
+pnpm --filter @myorg/ui build
+pnpm --filter @myorg/ui build-storybook
+```
+
 ## Spec Kit Documents
 
 Each feature lives in its own `specs/###-feature-name/` directory. The core documents are:
