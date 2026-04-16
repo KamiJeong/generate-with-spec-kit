@@ -1,0 +1,414 @@
+name: Publish Packages and Storybook
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      publish_tokens:
+        description: Publish packages/tokens to GitHub Packages
+        required: true
+        type: boolean
+        default: true
+      publish_ui:
+        description: Publish packages/ui to GitHub Packages
+        required: true
+        type: boolean
+        default: true
+      deploy_storybook:
+        description: Deploy packages/ui Storybook to GitHub Pages
+        required: true
+        type: boolean
+        default: true
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  REGISTRY_URL: https://npm.pkg.github.com
+
+jobs:
+  publish-tokens:
+    name: Publish @myorg/tokens
+    runs-on: ubuntu-latest
+    if: >-
+      !github.event.repository.fork &&
+      (
+        (github.event_name == 'release' && github.event.action == 'published' && github.event.release.target_commitish == 'main') ||
+        (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.publish_tokens)
+      )
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      tokens_publication: ${{ steps.publish-status.outputs.tokens_publication }}
+      tokens_failure_category: ${{ steps.publish-status.outputs.failure_category }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          registry-url: https://npm.pkg.github.com
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate tokens package
+        id: validate-tokens
+        run: |
+          pnpm --filter @myorg/tokens lint
+          pnpm --filter @myorg/tokens test
+          pnpm --filter @myorg/tokens build
+
+      - name: Verify tokens registry credential
+        id: tokens-credential
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${NODE_AUTH_TOKEN:-}" ]; then
+            echo "failure_category=credential" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+      - name: Check existing tokens version
+        id: tokens-version
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          package_name="@myorg/tokens"
+          package_version="$(node -p "require('./packages/tokens/package.json').version")"
+          error_file="$(mktemp)"
+          echo "version=${package_version}" >> "$GITHUB_OUTPUT"
+          if pnpm view "${package_name}@${package_version}" version --registry="${REGISTRY_URL}" >/dev/null 2>"${error_file}"; then
+            echo "already_published=true" >> "$GITHUB_OUTPUT"
+          elif grep -Eiq "(404|not found|no match)" "${error_file}"; then
+            echo "already_published=false" >> "$GITHUB_OUTPUT"
+          elif grep -Eiq "(401|403|unauthorized|forbidden|permission)" "${error_file}"; then
+            echo "failure_category=permission" >> "$GITHUB_OUTPUT"
+            exit 1
+          else
+            echo "failure_category=external-service" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+      - name: Publish tokens package
+        id: publish-tokens
+        if: steps.tokens-version.outputs.already_published == 'false'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm --filter @myorg/tokens publish --no-git-checks --access restricted
+
+      - name: Report tokens publication
+        id: publish-status
+        if: always()
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.validate-tokens.outcome }}" != "success" ]; then
+            status="failed"
+            failure_category="validation"
+            reason="tokens lint, test, or build gate failed"
+          elif [ "${{ steps.tokens-credential.outcome }}" != "success" ]; then
+            status="failed"
+            failure_category="credential"
+            reason="registry credential is missing or unavailable"
+          elif [ "${{ steps.tokens-version.outcome }}" != "success" ]; then
+            status="failed"
+            failure_category="${{ steps.tokens-version.outputs.failure_category || 'external-service' }}"
+            reason="registry duplicate-version preflight failed"
+          elif [ "${{ steps.tokens-version.outputs.already_published }}" = "true" ]; then
+            status="skipped"
+            failure_category="duplicate-version"
+            reason="duplicate version ${{ steps.tokens-version.outputs.version }}"
+          elif [ "${{ steps.publish-tokens.outcome }}" = "success" ]; then
+            status="published"
+            failure_category="none"
+            reason="published version ${{ steps.tokens-version.outputs.version }}"
+          else
+            status="failed"
+            failure_category="permission"
+            reason="package publish was rejected by registry permissions or package access policy"
+          fi
+          echo "tokens_publication=${status}" >> "$GITHUB_OUTPUT"
+          echo "failure_category=${failure_category}" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Package publication: @myorg/tokens"
+            echo "- tokens_publication: ${status}"
+            echo "- failure_category: ${failure_category}"
+            echo "- reason: ${reason}"
+            echo "- rerun guidance: rerun only the tokens path when this package failed or was skipped unexpectedly."
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "${status}" = "failed" ]; then
+            exit 1
+          fi
+
+  publish-ui:
+    name: Publish @myorg/ui
+    runs-on: ubuntu-latest
+    if: >-
+      !github.event.repository.fork &&
+      (
+        (github.event_name == 'release' && github.event.action == 'published' && github.event.release.target_commitish == 'main') ||
+        (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.publish_ui)
+      )
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      ui_publication: ${{ steps.publish-status.outputs.ui_publication }}
+      ui_failure_category: ${{ steps.publish-status.outputs.failure_category }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          registry-url: https://npm.pkg.github.com
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate UI package
+        id: validate-ui
+        run: |
+          pnpm --filter @myorg/tokens build
+          pnpm --filter @myorg/ui lint
+          pnpm --filter @myorg/ui test
+          pnpm --filter @myorg/ui build
+
+      - name: Verify UI registry credential
+        id: ui-credential
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${NODE_AUTH_TOKEN:-}" ]; then
+            echo "failure_category=credential" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+      - name: Check existing UI version
+        id: ui-version
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          package_name="@myorg/ui"
+          package_version="$(node -p "require('./packages/ui/package.json').version")"
+          error_file="$(mktemp)"
+          echo "version=${package_version}" >> "$GITHUB_OUTPUT"
+          if pnpm view "${package_name}@${package_version}" version --registry="${REGISTRY_URL}" >/dev/null 2>"${error_file}"; then
+            echo "already_published=true" >> "$GITHUB_OUTPUT"
+          elif grep -Eiq "(404|not found|no match)" "${error_file}"; then
+            echo "already_published=false" >> "$GITHUB_OUTPUT"
+          elif grep -Eiq "(401|403|unauthorized|forbidden|permission)" "${error_file}"; then
+            echo "failure_category=permission" >> "$GITHUB_OUTPUT"
+            exit 1
+          else
+            echo "failure_category=external-service" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+      - name: Publish UI package
+        id: publish-ui
+        if: steps.ui-version.outputs.already_published == 'false'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm --filter @myorg/ui publish --no-git-checks --access restricted
+
+      - name: Report UI publication
+        id: publish-status
+        if: always()
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.validate-ui.outcome }}" != "success" ]; then
+            status="failed"
+            failure_category="validation"
+            reason="UI lint, test, or build gate failed"
+          elif [ "${{ steps.ui-credential.outcome }}" != "success" ]; then
+            status="failed"
+            failure_category="credential"
+            reason="registry credential is missing or unavailable"
+          elif [ "${{ steps.ui-version.outcome }}" != "success" ]; then
+            status="failed"
+            failure_category="${{ steps.ui-version.outputs.failure_category || 'external-service' }}"
+            reason="registry duplicate-version preflight failed"
+          elif [ "${{ steps.ui-version.outputs.already_published }}" = "true" ]; then
+            status="skipped"
+            failure_category="duplicate-version"
+            reason="duplicate version ${{ steps.ui-version.outputs.version }}"
+          elif [ "${{ steps.publish-ui.outcome }}" = "success" ]; then
+            status="published"
+            failure_category="none"
+            reason="published version ${{ steps.ui-version.outputs.version }}"
+          else
+            status="failed"
+            failure_category="permission"
+            reason="package publish was rejected by registry permissions or package access policy"
+          fi
+          echo "ui_publication=${status}" >> "$GITHUB_OUTPUT"
+          echo "failure_category=${failure_category}" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Package publication: @myorg/ui"
+            echo "- ui_publication: ${status}"
+            echo "- failure_category: ${failure_category}"
+            echo "- reason: ${reason}"
+            echo "- rerun guidance: rerun only the UI package path when this package failed or was skipped unexpectedly."
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "${status}" = "failed" ]; then
+            exit 1
+          fi
+
+  deploy-storybook:
+    name: Deploy packages/ui Storybook
+    runs-on: ubuntu-latest
+    if: >-
+      !github.event.repository.fork &&
+      (
+        (github.event_name == 'release' && github.event.action == 'published' && github.event.release.target_commitish == 'main') ||
+        (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.deploy_storybook)
+      )
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      storybook_publication: ${{ steps.storybook-status.outputs.storybook_publication }}
+      storybook_failure_category: ${{ steps.storybook-status.outputs.failure_category }}
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Storybook
+        id: build-storybook
+        run: |
+          pnpm --filter @myorg/tokens build
+          pnpm --filter @myorg/ui build-storybook
+
+      - name: Install Playwright browser
+        id: install-playwright
+        run: pnpm --filter @myorg/ui exec playwright install --with-deps chromium
+
+      - name: Start static Storybook
+        id: start-storybook
+        run: node packages/ui/scripts/serve-static.cjs &
+
+      - name: Wait for Storybook
+        id: wait-storybook
+        run: npx wait-on http://127.0.0.1:6006
+
+      - name: Run Storybook tests
+        id: test-storybook
+        run: packages/ui/node_modules/.bin/test-storybook --url http://127.0.0.1:6006 --config-dir packages/ui/.storybook
+
+      - name: Configure Pages
+        id: configure-pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Storybook artifact
+        id: upload-storybook
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: packages/ui/storybook-static
+
+      - name: Deploy Storybook to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Report Storybook publication
+        id: storybook-status
+        if: always()
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.build-storybook.outcome }}" != "success" ] ||
+             [ "${{ steps.install-playwright.outcome }}" != "success" ] ||
+             [ "${{ steps.start-storybook.outcome }}" != "success" ] ||
+             [ "${{ steps.wait-storybook.outcome }}" != "success" ] ||
+             [ "${{ steps.test-storybook.outcome }}" != "success" ]; then
+            status="failed"
+            failure_category="validation"
+            reason="Storybook build or test gate failed"
+          elif [ "${{ steps.configure-pages.outcome }}" != "success" ] ||
+               [ "${{ steps.upload-storybook.outcome }}" != "success" ]; then
+            status="failed"
+            failure_category="permission"
+            reason="GitHub Pages setup or artifact upload was rejected by permissions"
+          elif [ "${{ steps.deployment.outcome }}" = "success" ]; then
+            status="deployed"
+            failure_category="none"
+            reason="deployed Storybook to GitHub Pages"
+          else
+            status="failed"
+            failure_category="external-service"
+            reason="GitHub Pages deployment service failed or was unavailable"
+          fi
+          echo "storybook_publication=${status}" >> "$GITHUB_OUTPUT"
+          echo "failure_category=${failure_category}" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Storybook publication"
+            echo "- storybook_publication: ${status}"
+            echo "- failure_category: ${failure_category}"
+            echo "- reason: ${reason}"
+            echo "- page_url: ${{ steps.deployment.outputs.page_url }}"
+            echo "- rerun guidance: rerun only the Storybook path when package publication succeeded but Pages deployment failed."
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "${status}" = "failed" ]; then
+            exit 1
+          fi
+
+  release-summary:
+    name: Release publication summary
+    runs-on: ubuntu-latest
+    if: always()
+    needs:
+      - publish-tokens
+      - publish-ui
+      - deploy-storybook
+    permissions:
+      contents: read
+    steps:
+      - name: Write consolidated summary
+        run: |
+          {
+            echo "## Release publication summary"
+            echo "- tokens_publication: ${{ needs.publish-tokens.outputs.tokens_publication || 'skipped' }}"
+            echo "- ui_publication: ${{ needs.publish-ui.outputs.ui_publication || 'skipped' }}"
+            echo "- storybook_publication: ${{ needs.deploy-storybook.outputs.storybook_publication || 'skipped' }}"
+            echo "- page_url: ${{ needs.deploy-storybook.outputs.page_url }}"
+            echo "- failure_category: tokens=${{ needs.publish-tokens.outputs.tokens_failure_category || 'none' }}, ui=${{ needs.publish-ui.outputs.ui_failure_category || 'none' }}, storybook=${{ needs.deploy-storybook.outputs.storybook_failure_category || 'none' }}"
+            echo "- rerun guidance: use workflow_dispatch on main and enable only failed paths."
+          } >> "$GITHUB_STEP_SUMMARY"

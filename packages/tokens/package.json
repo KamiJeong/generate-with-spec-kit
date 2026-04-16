@@ -1,8 +1,23 @@
 {
   "name": "@myorg/tokens",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamijeong/generate-with-spec-kit.git",
+    "directory": "packages/tokens"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "dist",
+    "src/css/base.css",
+    "src/css/base.css.d.ts",
+    "README.md",
+    "package.json"
+  ],
   "sideEffects": [
     "./src/css/base.css"
   ],
