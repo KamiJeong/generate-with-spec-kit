@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import { ProgressSummary, RiskBadge } from '@wiki/components/shared/StatusIndicators';
 import type { Project, UserRolePerspective } from '@wiki/types';
 

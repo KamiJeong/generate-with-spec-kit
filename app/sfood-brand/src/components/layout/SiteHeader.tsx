@@ -4,7 +4,7 @@ import {
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
-} from "@myorg/ui";
+} from "@kamijeong/ui";
 import { navItems, siteConfig } from "@sfood/content/site";
 import { ChevronDown, Menu } from "lucide-react";
 import { useEffect, useState } from "react";

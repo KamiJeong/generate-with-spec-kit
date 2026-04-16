@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import type { Project, UserRolePerspective } from '@wiki/types';
 
 export function SupportContextPanel({

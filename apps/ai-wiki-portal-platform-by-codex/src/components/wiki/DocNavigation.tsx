@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import { Link } from 'react-router-dom';
 import { wikiDocPath } from '@wiki/routes';
 import type { WikiDocument } from '@wiki/types';

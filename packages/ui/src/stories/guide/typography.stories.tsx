@@ -1,4 +1,4 @@
-import { fontFamily, fontWeight } from '@myorg/tokens';
+import { fontFamily, fontWeight } from '@kamijeong/tokens';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FontFamilySection, FontWeightSection } from './_helpers';

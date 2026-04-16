@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertTitle, Button, Empty, Spinner } from '@myorg/ui';
+import { Alert, AlertDescription, AlertTitle, Button, Empty, Spinner } from '@kamijeong/ui';
 import { AlertCircle, Inbox, RefreshCw } from 'lucide-react';
 
 interface StateFeedbackProps {

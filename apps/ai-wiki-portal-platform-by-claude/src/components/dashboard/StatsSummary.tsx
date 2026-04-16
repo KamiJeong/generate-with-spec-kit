@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@myorg/ui';
+import { Card, CardContent } from '@kamijeong/ui';
 import type { Project } from '@wiki/types';
 
 interface StatsSummaryProps {

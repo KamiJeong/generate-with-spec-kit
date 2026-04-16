@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Card, CardContent, CardHeader, CardTitle, Field, Textarea } from '@myorg/ui';
+import { Button, Card, CardContent, CardHeader, CardTitle, Field, Textarea } from '@kamijeong/ui';
 
 interface FeedbackEntryProps {
   sourceLabel: string;

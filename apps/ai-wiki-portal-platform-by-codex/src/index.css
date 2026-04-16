@@ -1,5 +1,5 @@
-@import '@myorg/tokens/css';
-@import '@myorg/ui/styles.css';
+@import '@kamijeong/tokens/css';
+@import '@kamijeong/ui/styles.css';
 
 @source "../../../packages/ui/src";
 

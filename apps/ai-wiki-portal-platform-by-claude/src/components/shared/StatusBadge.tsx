@@ -1,4 +1,4 @@
-import { Badge } from '@myorg/ui';
+import { Badge } from '@kamijeong/ui';
 import type { ProjectStatus } from '@wiki/types';
 
 interface StatusBadgeProps {

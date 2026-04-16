@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
-} from '@myorg/ui';
+} from '@kamijeong/ui';
 import {
   BookOpenIcon,
   FolderOpenIcon,

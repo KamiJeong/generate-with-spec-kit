@@ -19,23 +19,23 @@ packages/
 
 - Canonical guide: `/DESIGN.md`
 - For any UI task, read `/DESIGN.md` first before proposing or editing components.
-- Use semantic tokens and existing `@myorg/ui` component variants from that file.
+- Use semantic tokens and existing `@kamijeong/ui` component variants from that file.
 
 ## Commands
 
-pnpm --filter @myorg/tokens build
-pnpm --filter @myorg/tokens test
-pnpm --filter @myorg/tokens lint
-pnpm --filter @myorg/ui build
-pnpm --filter @myorg/ui lint
-pnpm --filter @myorg/ui build-storybook
-pnpm --filter @myorg/ui storybook
+pnpm --filter @kamijeong/tokens build
+pnpm --filter @kamijeong/tokens test
+pnpm --filter @kamijeong/tokens lint
+pnpm --filter @kamijeong/ui build
+pnpm --filter @kamijeong/ui lint
+pnpm --filter @kamijeong/ui build-storybook
+pnpm --filter @kamijeong/ui storybook
 
 <!-- MANUAL ADDITIONS START -->
 
 ## MCP (Storybook)
 
-- **전제조건**: Storybook 개발 서버가 실행 중이어야 MCP 도구 사용 가능 (`pnpm --filter @myorg/ui storybook`)
+- **전제조건**: Storybook 개발 서버가 실행 중이어야 MCP 도구 사용 가능 (`pnpm --filter @kamijeong/ui storybook`)
 - **컴포넌트 작업 전**: 반드시 MCP 도구로 해당 컴포넌트 문서를 먼저 조회할 것
 
 ### 사용 가능한 MCP 도구

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import { GitBranchIcon, GitCommitHorizontalIcon } from 'lucide-react';
 import type { GithubStatus } from '@wiki/types';
 

@@ -1,4 +1,4 @@
-import { Button, Card, CardContent } from '@myorg/ui';
+import { Button, Card, CardContent } from '@kamijeong/ui';
 import { pageContent, siteIdentity, homeStats } from '@sfood/content/site';
 
 export function HeroSection() {

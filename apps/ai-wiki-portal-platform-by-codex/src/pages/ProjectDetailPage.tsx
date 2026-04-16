@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import { useParams } from 'react-router-dom';
 import { AiQueryPanel } from '@wiki/components/project/AiQueryPanel';
 import { GithubStatusCard } from '@wiki/components/project/GithubStatusCard';

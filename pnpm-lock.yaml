@@ -32,10 +32,10 @@ importers:
 
   app/sfood-brand:
     dependencies:
-      '@myorg/tokens':
+      '@kamijeong/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@myorg/ui':
+      '@kamijeong/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       lucide-react:
@@ -99,10 +99,10 @@ importers:
 
   apps/ai-wiki-portal-platform-by-claude:
     dependencies:
-      '@myorg/tokens':
+      '@kamijeong/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@myorg/ui':
+      '@kamijeong/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       lucide-react:
@@ -160,10 +160,10 @@ importers:
 
   apps/ai-wiki-portal-platform-by-codex:
     dependencies:
-      '@myorg/tokens':
+      '@kamijeong/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@myorg/ui':
+      '@kamijeong/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       lucide-react:
@@ -221,10 +221,10 @@ importers:
 
   apps/sfood:
     dependencies:
-      '@myorg/tokens':
+      '@kamijeong/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@myorg/ui':
+      '@kamijeong/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       lucide-react:
@@ -316,7 +316,7 @@ importers:
       '@hookform/resolvers':
         specifier: 5.2.2
         version: 5.2.2(react-hook-form@7.71.2(react@19.2.4))
-      '@myorg/tokens':
+      '@kamijeong/tokens':
         specifier: workspace:*
         version: link:../tokens
       '@radix-ui/react-accordion':
@@ -530,10 +530,10 @@ importers:
 
   packages/web:
     dependencies:
-      '@myorg/tokens':
+      '@kamijeong/tokens':
         specifier: workspace:*
         version: link:../tokens
-      '@myorg/ui':
+      '@kamijeong/ui':
         specifier: workspace:*
         version: link:../ui
       lucide-react:

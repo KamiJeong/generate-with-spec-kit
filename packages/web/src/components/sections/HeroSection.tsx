@@ -1,6 +1,6 @@
 import { ArrowRight, Sparkles } from 'lucide-react';
 
-import { Badge, Button, Card, CardContent } from '@myorg/ui';
+import { Badge, Button, Card, CardContent } from '@kamijeong/ui';
 
 import { siteConfig, stats } from '@web/content/site';
 

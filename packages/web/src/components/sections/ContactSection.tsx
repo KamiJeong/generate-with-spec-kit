@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Button, Card, CardContent, Field, Input, Textarea } from '@myorg/ui';
+import { Button, Card, CardContent, Field, Input, Textarea } from '@kamijeong/ui';
 
 import { siteConfig } from '@web/content/site';
 

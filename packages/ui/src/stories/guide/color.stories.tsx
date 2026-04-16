@@ -1,4 +1,4 @@
-import { colors, semanticHsl, semanticHslDark } from '@myorg/tokens';
+import { colors, semanticHsl, semanticHslDark } from '@kamijeong/tokens';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { PrimitiveColorGroup, SemanticColorTable } from './_helpers';

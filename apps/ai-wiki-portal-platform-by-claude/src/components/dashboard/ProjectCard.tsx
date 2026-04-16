@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle, Progress } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle, Progress } from '@kamijeong/ui';
 import { Link } from 'react-router-dom';
 import { StatusBadge } from '@wiki/components/shared/StatusBadge';
 import { projectDetailPath } from '@wiki/routes';

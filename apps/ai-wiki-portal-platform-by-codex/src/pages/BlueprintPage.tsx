@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import { BlueprintForm } from '@wiki/components/blueprint/BlueprintForm';
 import { BlueprintReadiness } from '@wiki/components/blueprint/BlueprintReadiness';
 import { BlueprintResult } from '@wiki/components/blueprint/BlueprintResult';

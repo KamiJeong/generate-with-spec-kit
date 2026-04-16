@@ -1,4 +1,4 @@
-import { Badge } from '@myorg/ui';
+import { Badge } from '@kamijeong/ui';
 import type { PageContent } from '@sfood/content/site';
 
 interface PageHeroProps {

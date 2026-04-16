@@ -2,7 +2,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@myorg/ui';
+} from '@kamijeong/ui';
 import { ChevronDownIcon, ChevronRightIcon, FileTextIcon, FolderIcon } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';

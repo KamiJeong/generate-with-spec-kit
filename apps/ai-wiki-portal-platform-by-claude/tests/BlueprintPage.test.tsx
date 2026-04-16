@@ -1,4 +1,4 @@
-import { SidebarProvider } from '@myorg/ui';
+import { SidebarProvider } from '@kamijeong/ui';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';

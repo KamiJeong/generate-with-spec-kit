@@ -14,7 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
   buttonVariants,
-} from '@myorg/ui';
+} from '@kamijeong/ui';
 
 import { navItems, siteConfig } from '@web/content/site';
 

@@ -24,10 +24,10 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Install Playwright browser
-        run: pnpm --filter @myorg/ui exec playwright install --with-deps chromium
+        run: pnpm --filter @kamijeong/ui exec playwright install --with-deps chromium
 
       - name: Build Storybook
-        run: pnpm --filter @myorg/ui build-storybook
+        run: pnpm --filter @kamijeong/ui build-storybook
 
       - name: Start static Storybook
         run: node packages/ui/scripts/serve-static.cjs &

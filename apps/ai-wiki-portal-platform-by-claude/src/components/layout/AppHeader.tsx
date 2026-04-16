@@ -6,7 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
   SidebarTrigger,
-} from '@myorg/ui';
+} from '@kamijeong/ui';
 import { Link } from 'react-router-dom';
 
 export interface BreadcrumbEntry {

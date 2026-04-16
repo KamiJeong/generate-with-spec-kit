@@ -20,11 +20,11 @@
 
 ## System Overview
 
-`generate-with-spec-kit`는 디자인 시스템 컴포넌트 라이브러리와 AI 기반 개발 가이드 플랫폼을 포함하는 pnpm monorepo이다. 비개발자도 AI를 활용하여 서비스 개발을 수행할 수 있도록 지원하는 Wiki 기반 플랫폼 화면과, 재사용 가능한 `@myorg/ui` 컴포넌트 라이브러리 및 `@myorg/tokens` 디자인 토큰 패키지를 제공한다.
+`generate-with-spec-kit`는 디자인 시스템 컴포넌트 라이브러리와 AI 기반 개발 가이드 플랫폼을 포함하는 pnpm monorepo이다. 비개발자도 AI를 활용하여 서비스 개발을 수행할 수 있도록 지원하는 Wiki 기반 플랫폼 화면과, 재사용 가능한 `@kamijeong/ui` 컴포넌트 라이브러리 및 `@kamijeong/tokens` 디자인 토큰 패키지를 제공한다.
 
 **주요 패키지**:
-- `packages/tokens` (`@myorg/tokens`) — 디자인 토큰 (CSS 변수 기반)
-- `packages/ui` (`@myorg/ui`) — shadcn/ui 기반 React 컴포넌트 라이브러리 + Storybook
+- `packages/tokens` (`@kamijeong/tokens`) — 디자인 토큰 (CSS 변수 기반)
+- `packages/ui` (`@kamijeong/ui`) — shadcn/ui 기반 React 컴포넌트 라이브러리 + Storybook
 - `apps/sfood` — SFood 브랜드 사이트 (Vite + React SPA)
 - `apps/ai-wiki-portal-platform-by-claude` — AI Wiki Portal 플랫폼 화면 (Vite + React SPA)
 
@@ -32,22 +32,22 @@
 
 | 컴포넌트 | 역할 | 기술 | 의존 |
 |---------|------|------|------|
-| `@myorg/tokens` | 디자인 토큰 (색상, 타이포, 간격) | TypeScript, CSS Variables | — |
-| `@myorg/ui` | 재사용 가능한 UI 컴포넌트 라이브러리 | React 18+, Tailwind CSS v4, Radix UI | `@myorg/tokens` |
-| `apps/sfood` | SFood 브랜드 사이트 | Vite, React 18+, `@myorg/ui` | `@myorg/tokens`, `@myorg/ui` |
-| `apps/ai-wiki-portal-platform-by-claude` | AI 개발 가이드 플랫폼 화면 (Mock) | Vite, React 18+, react-router-dom v6, `@myorg/ui` | `@myorg/tokens`, `@myorg/ui` |
-| Storybook | UI 컴포넌트 문서 및 시각적 테스트 | @storybook/react-vite, @storybook/addon-vitest | `@myorg/ui` |
+| `@kamijeong/tokens` | 디자인 토큰 (색상, 타이포, 간격) | TypeScript, CSS Variables | — |
+| `@kamijeong/ui` | 재사용 가능한 UI 컴포넌트 라이브러리 | React 18+, Tailwind CSS v4, Radix UI | `@kamijeong/tokens` |
+| `apps/sfood` | SFood 브랜드 사이트 | Vite, React 18+, `@kamijeong/ui` | `@kamijeong/tokens`, `@kamijeong/ui` |
+| `apps/ai-wiki-portal-platform-by-claude` | AI 개발 가이드 플랫폼 화면 (Mock) | Vite, React 18+, react-router-dom v6, `@kamijeong/ui` | `@kamijeong/tokens`, `@kamijeong/ui` |
+| Storybook | UI 컴포넌트 문서 및 시각적 테스트 | @storybook/react-vite, @storybook/addon-vitest | `@kamijeong/ui` |
 
 ## 1. Introduction & Goals
 <!-- arc42: §1 — Introduction and Goals -->
 
-pnpm workspace 기반 monorepo로 디자인 시스템(`@myorg/tokens`, `@myorg/ui`)과 이를 활용한 앱(`apps/*`)을 함께 관리한다. Storybook을 통해 컴포넌트 문서화 및 시각적 검증을 수행하며, speckit 워크플로우로 feature 명세→계획→태스크→구현 사이클을 관리한다.
+pnpm workspace 기반 monorepo로 디자인 시스템(`@kamijeong/tokens`, `@kamijeong/ui`)과 이를 활용한 앱(`apps/*`)을 함께 관리한다. Storybook을 통해 컴포넌트 문서화 및 시각적 검증을 수행하며, speckit 워크플로우로 feature 명세→계획→태스크→구현 사이클을 관리한다.
 
 ### Quality Goals
 
 | Priority | Quality Goal | Scenario |
 |----------|-------------|----------|
-| 1 | UX 일관성 | `@myorg/ui` 컴포넌트만 사용, 임의 스타일 오버라이드 금지 |
+| 1 | UX 일관성 | `@kamijeong/ui` 컴포넌트만 사용, 임의 스타일 오버라이드 금지 |
 | 2 | 코드 품질 | Biome lint/format, 단일 책임 원칙, DRY 준수 |
 | 3 | 테스트 커버리지 | 핵심 비즈니스 로직 80% 이상, Vitest + @testing-library |
 
@@ -61,7 +61,7 @@ pnpm workspace 기반 monorepo로 디자인 시스템(`@myorg/tokens`, `@myorg/u
 | Technical | Tailwind CSS v4 | 스타일링 (의미 토큰 전용) |
 | Technical | pnpm 10.x + turbo | monorepo 패키지 관리 및 빌드 |
 | Technical | Biome v2.4.9 | lint/format (ESLint 대체) |
-| Architecture | `@myorg/ui` 컴포넌트 전용 | 임의 스타일 오버라이드 금지 (Constitution III) |
+| Architecture | `@kamijeong/ui` 컴포넌트 전용 | 임의 스타일 오버라이드 금지 (Constitution III) |
 | Architecture | Mock 데이터 전용 (앱) | 실제 API 연동 없음, 런타임 상태만 사용 |
 
 ## 3. Context & Scope
@@ -84,14 +84,14 @@ See \`docs-canonical/ADR.md\` for architecture decision records.
 
 | Component | Responsibility | Location | Tests |
 |-----------|---------------|----------|-------|
-| `@myorg/tokens` | 디자인 토큰 빌드 및 CSS 변수 export | `packages/tokens/src/` | `packages/tokens/tests/` |
-| `@myorg/ui` | React 컴포넌트 라이브러리 | `packages/ui/src/` | Storybook + Vitest |
+| `@kamijeong/tokens` | 디자인 토큰 빌드 및 CSS 변수 export | `packages/tokens/src/` | `packages/tokens/tests/` |
+| `@kamijeong/ui` | React 컴포넌트 라이브러리 | `packages/ui/src/` | Storybook + Vitest |
 | `apps/sfood` | SFood 브랜드 사이트 SPA | `apps/sfood/src/` | `apps/sfood/tests/` |
 | `apps/ai-wiki-portal` | AI Wiki Portal 플랫폼 화면 | `apps/ai-wiki-portal-platform-by-claude/src/` | 각 앱 내 `tests/` |
 
 \`\`\`mermaid
 graph TD
-    T[tokens<br/>@myorg/tokens] --> UI[ui<br/>@myorg/ui]
+    T[tokens<br/>@kamijeong/tokens] --> UI[ui<br/>@kamijeong/ui]
     T --> APP1[apps/sfood]
     UI --> APP1
     T --> APP2[apps/ai-wiki-portal]

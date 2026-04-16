@@ -17,7 +17,7 @@ import {
   SidebarProvider,
   SidebarSeparator,
   SidebarTrigger,
-} from '@myorg/ui';
+} from '@kamijeong/ui';
 import { BookOpen, Bot, ClipboardList, LayoutDashboard, LifeBuoy, Sparkles } from 'lucide-react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { RolePerspectiveProvider, useRolePerspective } from '@wiki/lib/role-context';

@@ -1,4 +1,4 @@
-import { SidebarInset, SidebarProvider } from '@myorg/ui';
+import { SidebarInset, SidebarProvider } from '@kamijeong/ui';
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 import { AppSidebar } from '@wiki/components/layout/AppSidebar';

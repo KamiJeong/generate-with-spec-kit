@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@myorg/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@kamijeong/ui';
 import { DocTree } from '@wiki/components/wiki/DocTree';
 import { WikiFilters } from '@wiki/components/wiki/WikiFilters';
 import { useRolePerspective } from '@wiki/lib/role-context';

@@ -33,7 +33,7 @@ env:
 
 jobs:
   publish-tokens:
-    name: Publish @myorg/tokens
+    name: Publish @kamijeong/tokens
     runs-on: ubuntu-latest
     if: >-
       !github.event.repository.fork &&
@@ -67,9 +67,9 @@ jobs:
       - name: Validate tokens package
         id: validate-tokens
         run: |
-          pnpm --filter @myorg/tokens lint
-          pnpm --filter @myorg/tokens test
-          pnpm --filter @myorg/tokens build
+          pnpm --filter @kamijeong/tokens lint
+          pnpm --filter @kamijeong/tokens test
+          pnpm --filter @kamijeong/tokens build
 
       - name: Verify tokens registry credential
         id: tokens-credential
@@ -82,13 +82,29 @@ jobs:
             exit 1
           fi
 
+      - name: Verify tokens package identity
+        id: tokens-identity
+        env:
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
+        run: |
+          set -euo pipefail
+          package_name="$(node -p "require('./packages/tokens/package.json').name")"
+          package_scope="${package_name#@}"
+          package_scope="${package_scope%%/*}"
+          repository_owner="$(printf '%s' "${REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')"
+          if [ "${package_scope}" != "${repository_owner}" ]; then
+            echo "failure_category=owner-scope-mismatch" >> "$GITHUB_OUTPUT"
+            echo "reason=package scope @${package_scope} must match repository owner @${repository_owner} for GitHub Packages publish" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
       - name: Check existing tokens version
         id: tokens-version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          package_name="@myorg/tokens"
+          package_name="@kamijeong/tokens"
           package_version="$(node -p "require('./packages/tokens/package.json').version")"
           error_file="$(mktemp)"
           echo "version=${package_version}" >> "$GITHUB_OUTPUT"
@@ -109,7 +125,7 @@ jobs:
         if: steps.tokens-version.outputs.already_published == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm --filter @myorg/tokens publish --no-git-checks --access restricted
+        run: pnpm --filter @kamijeong/tokens publish --no-git-checks --access restricted
 
       - name: Report tokens publication
         id: publish-status
@@ -124,6 +140,10 @@ jobs:
             status="failed"
             failure_category="credential"
             reason="registry credential is missing or unavailable"
+          elif [ "${{ steps.tokens-identity.outcome }}" != "success" ]; then
+            status="failed"
+            failure_category="${{ steps.tokens-identity.outputs.failure_category || 'owner-scope-mismatch' }}"
+            reason="${{ steps.tokens-identity.outputs.reason || 'package scope does not match the GitHub repository owner namespace' }}"
           elif [ "${{ steps.tokens-version.outcome }}" != "success" ]; then
             status="failed"
             failure_category="${{ steps.tokens-version.outputs.failure_category || 'external-service' }}"
@@ -144,7 +164,7 @@ jobs:
           echo "tokens_publication=${status}" >> "$GITHUB_OUTPUT"
           echo "failure_category=${failure_category}" >> "$GITHUB_OUTPUT"
           {
-            echo "### Package publication: @myorg/tokens"
+            echo "### Package publication: @kamijeong/tokens"
             echo "- tokens_publication: ${status}"
             echo "- failure_category: ${failure_category}"
             echo "- reason: ${reason}"
@@ -155,7 +175,7 @@ jobs:
           fi
 
   publish-ui:
-    name: Publish @myorg/ui
+    name: Publish @kamijeong/ui
     runs-on: ubuntu-latest
     if: >-
       !github.event.repository.fork &&
@@ -189,10 +209,10 @@ jobs:
       - name: Validate UI package
         id: validate-ui
         run: |
-          pnpm --filter @myorg/tokens build
-          pnpm --filter @myorg/ui lint
-          pnpm --filter @myorg/ui test
-          pnpm --filter @myorg/ui build
+          pnpm --filter @kamijeong/tokens build
+          pnpm --filter @kamijeong/ui lint
+          pnpm --filter @kamijeong/ui test
+          pnpm --filter @kamijeong/ui build
 
       - name: Verify UI registry credential
         id: ui-credential
@@ -205,13 +225,29 @@ jobs:
             exit 1
           fi
 
+      - name: Verify UI package identity
+        id: ui-identity
+        env:
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
+        run: |
+          set -euo pipefail
+          package_name="$(node -p "require('./packages/ui/package.json').name")"
+          package_scope="${package_name#@}"
+          package_scope="${package_scope%%/*}"
+          repository_owner="$(printf '%s' "${REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')"
+          if [ "${package_scope}" != "${repository_owner}" ]; then
+            echo "failure_category=owner-scope-mismatch" >> "$GITHUB_OUTPUT"
+            echo "reason=package scope @${package_scope} must match repository owner @${repository_owner} for GitHub Packages publish" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
       - name: Check existing UI version
         id: ui-version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          package_name="@myorg/ui"
+          package_name="@kamijeong/ui"
           package_version="$(node -p "require('./packages/ui/package.json').version")"
           error_file="$(mktemp)"
           echo "version=${package_version}" >> "$GITHUB_OUTPUT"
@@ -232,7 +268,7 @@ jobs:
         if: steps.ui-version.outputs.already_published == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm --filter @myorg/ui publish --no-git-checks --access restricted
+        run: pnpm --filter @kamijeong/ui publish --no-git-checks --access restricted
 
       - name: Report UI publication
         id: publish-status
@@ -247,6 +283,10 @@ jobs:
             status="failed"
             failure_category="credential"
             reason="registry credential is missing or unavailable"
+          elif [ "${{ steps.ui-identity.outcome }}" != "success" ]; then
+            status="failed"
+            failure_category="${{ steps.ui-identity.outputs.failure_category || 'owner-scope-mismatch' }}"
+            reason="${{ steps.ui-identity.outputs.reason || 'package scope does not match the GitHub repository owner namespace' }}"
           elif [ "${{ steps.ui-version.outcome }}" != "success" ]; then
             status="failed"
             failure_category="${{ steps.ui-version.outputs.failure_category || 'external-service' }}"
@@ -267,7 +307,7 @@ jobs:
           echo "ui_publication=${status}" >> "$GITHUB_OUTPUT"
           echo "failure_category=${failure_category}" >> "$GITHUB_OUTPUT"
           {
-            echo "### Package publication: @myorg/ui"
+            echo "### Package publication: @kamijeong/ui"
             echo "- ui_publication: ${status}"
             echo "- failure_category: ${failure_category}"
             echo "- reason: ${reason}"
@@ -316,12 +356,12 @@ jobs:
       - name: Build Storybook
         id: build-storybook
         run: |
-          pnpm --filter @myorg/tokens build
-          pnpm --filter @myorg/ui build-storybook
+          pnpm --filter @kamijeong/tokens build
+          pnpm --filter @kamijeong/ui build-storybook
 
       - name: Install Playwright browser
         id: install-playwright
-        run: pnpm --filter @myorg/ui exec playwright install --with-deps chromium
+        run: pnpm --filter @kamijeong/ui exec playwright install --with-deps chromium
 
       - name: Start static Storybook
         id: start-storybook
